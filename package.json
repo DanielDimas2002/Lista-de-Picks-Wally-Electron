@@ -1,15 +1,37 @@
 {
-  "name": "lista-de-picks-wally-electron",
+  "name": "lista-de-picks-wally-desktop",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron .",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win",
+    "dist:mac": "electron-builder --mac",
+    "dist:linux": "electron-builder --linux"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Aplicação de Picks Wally para Desktop",
+  "author": "Daniel Dimas de Souza",
+  "build": {
+    "appId": "com.example.lista-de-picks-wally-desktop",
+    "productName": "Lista de Picks Wally Desktop",
+    "compression": "normal",
+    "files": [
+      "**/*"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  },
   "devDependencies": {
-    "electron": "^33.0.2"
+    "electron": "^33.0.2",
+    "electron-builder": "^24.13.3"
   }
 }
