@@ -16,13 +16,13 @@ let campeoes = [];
 
 // Função para atualizar a tabela de campeões
 function atualizarTabela() {
-    tabelaPicksBody.innerHTML = ''; // Limpa a tabela
+    tabelaPicksBody.innerHTML = ''; 
 
     campeoes.forEach((campeao, index) => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td>${campeao.nome}</td>
-            <td>${campeao.partidas}</td>
+            <td class = "vidas">${campeao.partidas}</td>
             <td>
                 <button class="destaque" onclick="reduzirVida(${index})">Reduzir Vida</button>
                 <button class="acao" onclick="editarCampeao(${index})">Editar</button>
