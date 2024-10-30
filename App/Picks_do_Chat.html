@@ -43,6 +43,24 @@
         <button id="fecharInstrucoes">Fechar</button>
     </aside>
 
+    <div class="overlay" id="overlay"></div> <!-- O overlay deve estar fora do popup -->
+<div class="popup" id="popupAdicao">
+    <div id="popupForm">
+        <h2>Adicionar Campeão</h2>
+        <form id="formCampeao">
+            <label for="nomeCampeao">Nome do Campeão:</label>
+            <input type="text" id="nomeCampeao" required>
+
+            <label for="partidasCampeao">Quantidade de Partidas:</label>
+            <input type="number" id="partidasCampeao" min="1" required>
+
+            <button type="submit">Salvar</button>
+            <button type="button" id="cancelarPopup">Cancelar</button>
+        </form>
+    </div>
+</div>
+ 
+      
     <main>
         <section id="tabelaPicks">
             <table>
@@ -58,20 +76,6 @@
                 </tbody>
             </table>
         </section>
-
-        <!-- Pop-up para adicionar e editar campeão -->
-        <div id="popupForm" class="popup">
-            <form id="formCampeao">
-                <label for="nomeCampeao">Nome do Campeão:</label>
-                <input type="text" id="nomeCampeao" required>
-
-                <label for="partidasCampeao">Quantidade de Partidas:</label>
-                <input type="number" id="partidasCampeao" min="1" required>
-
-                <button type="submit">Salvar</button>
-                <button type="button" id="cancelarPopup">Cancelar</button>
-            </form>
-        </div>
     </main>
 
     <script src="script.js"></script>

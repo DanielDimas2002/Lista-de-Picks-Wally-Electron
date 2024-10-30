@@ -9,7 +9,8 @@ const tabelaPicksBody = document.querySelector('#tabelaPicks tbody');
 const instrucoesBotao = document.getElementById('instrucoesBotao');
 const instrucoesTela = document.getElementById('instrucoes');
 const fecharInstrucoes = document.getElementById('fecharInstrucoes');
-
+const popupAdicao = document.getElementById('popupAdicao');
+const btnCancelarPopup = document.getElementById('cancelarPopup');
 
 let campeoes = [];
 
@@ -19,7 +20,6 @@ function atualizarTabela() {
 
     campeoes.forEach((campeao, index) => {
         const tr = document.createElement('tr');
-
         tr.innerHTML = `
             <td>${campeao.nome}</td>
             <td>${campeao.partidas}</td>
@@ -32,7 +32,6 @@ function atualizarTabela() {
                 <button class="destaque" onclick="removerCampeao(${index})">Excluir</button>
             </td>
         `;
-
         tabelaPicksBody.appendChild(tr);
     });
 
@@ -46,6 +45,12 @@ formCampeao.addEventListener('submit', (e) => {
     const nomeCampeao = nomeCampeaoInput.value;
     const partidasCampeao = parseInt(partidasCampeaoInput.value);
 
+    // Validação
+    if (!nomeCampeao || isNaN(partidasCampeao) || partidasCampeao < 0) {
+        alert('Por favor, preencha todos os campos corretamente.');
+        return;
+    }
+
     // Adiciona novo campeão ou atualiza existente
     if (formCampeao.dataset.index !== undefined) {
         const index = parseInt(formCampeao.dataset.index);
@@ -58,21 +63,27 @@ formCampeao.addEventListener('submit', (e) => {
     // Limpa o formulário e fecha o pop-up
     formCampeao.reset();
     delete formCampeao.dataset.index; // Remove o índice do dataset
-    popupForm.style.display = 'none';
+    fecharPopupAdicao(); // Usando a função para fechar o pop-up
     atualizarTabela();
 });
 
 // Função para abrir o pop-up
-btnAdicionarCampeao.addEventListener('click', () => {
-    popupForm.style.display = 'flex';
-});
+function abrirPopupAdicao() {
+    popupAdicao.style.display = 'flex'; // Mostra o pop-up
+    document.getElementById('overlay').style.display = 'block'; // Mostra o overlay
+}
 
-// Função para cancelar o pop-up
-cancelarPopup.addEventListener('click', () => {
-    popupForm.style.display = 'none';
-    formCampeao.reset();
-    delete formCampeao.dataset.index;
-});
+// Função para fechar o pop-up
+function fecharPopupAdicao() {
+    popupAdicao.style.display = 'none'; // Oculta o pop-up
+    document.getElementById('overlay').style.display = 'none'; // Oculta o overlay
+}
+
+// Evento de clique para abrir o pop-up
+btnAdicionarCampeao.addEventListener('click', abrirPopupAdicao);
+
+// Evento de clique para cancelar e fechar o pop-up
+btnCancelarPopup.addEventListener('click', fecharPopupAdicao);
 
 // Função para reduzir a vida de um campeão
 function reduzirVida(index) {
@@ -85,7 +96,7 @@ function reduzirVida(index) {
             if (confirmacao) {
                 removerCampeao(index); 
             } else {
-                // Se o usuário não confirmar, restaura a vida para 1 (ou qualquer valor que você escolher)
+                // Restaura a vida para 1
                 campeoes[index].partidas = 1; 
                 atualizarTabela(); 
             }
@@ -97,14 +108,12 @@ function reduzirVida(index) {
     }
 }
 
-
-
 // Função para editar um campeão
 function editarCampeao(index) {
     nomeCampeaoInput.value = campeoes[index].nome;
     partidasCampeaoInput.value = campeoes[index].partidas;
     formCampeao.dataset.index = index; // Armazena o índice para edição
-    popupForm.style.display = 'flex'; // Abre o pop-up
+    abrirPopupAdicao(); // Abre o pop-up
 }
 
 // Função para mover um campeão para cima
