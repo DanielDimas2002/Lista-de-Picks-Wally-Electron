@@ -183,6 +183,24 @@ button#cancelarPopup:hover {
     font-size: 1.1em; 
 }
 
+label {
+    display: block; 
+    margin-bottom: 5px; 
+}
+
+input {
+    display: block; 
+    width: 100%; 
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background-color: #1f1f1f;
+    color: #f0e6d2;
+    font-size: 1em;
+    margin-bottom: 15px; 
+}
+
+
 #instrucoesBotao {
     background-color: #ff6347;
 }
