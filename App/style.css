@@ -209,6 +209,87 @@ input {
     background-color: #ff4500;
 }
 
+#configuracaoBotao {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #f0f0f0;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+#tamanhoFonte {
+    -webkit-appearance: none; /* Remove o estilo padrão no Chrome/Safari */
+    background: #1f1f1f; /* Cor de fundo da barrinha */
+    border-radius: 5px; /* Arredondar as extremidades da barrinha */
+    height: 8px; /* Defina a altura da trilha */
+    width: 100%; /* Largura da barra */
+    outline: none; /* Remove o contorno */
+    transition: background 0.3s ease; /* Transição suave ao alterar a cor */
+}
+
+#tamanhoFonte::-webkit-slider-runnable-track {
+    height: 8px; /* Altura da trilha (parte que a barrinha desliza) */
+    background: #b88929; /* Cor da trilha */
+    border-radius: 5px;
+}
+
+#tamanhoFonte::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Remove o estilo padrão no Chrome/Safari */
+    width: 20px; /* Largura do controle deslizante (bolinha) */
+    height: 20px; /* Altura do controle deslizante (bolinha) */
+    background: #ff6347; /* Cor da bolinha */
+    border-radius: 50%; /* Deixa o controle redondo */
+    cursor: pointer; /* Cursor ao passar o mouse sobre a barrinha */
+    margin-top: -6px; /* Ajuste para centralizar a bolinha em relação à barra */
+}
+
+#tamanhoFonte:active::-webkit-slider-thumb {
+    background: #ff6347; /* Cor ao clicar no controle deslizante */
+}
+
+#tamanhoFonte::-moz-range-track {
+    height: 8px;
+    background: #ddd;
+    border-radius: 5px;
+}
+
+#tamanhoFonte::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #ff6347;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: -6px; /* Ajuste para centralizar a bolinha */
+}
+
+#tamanhoFonte:active::-moz-range-thumb {
+    background: #ff6347;
+}
+
+#tamanhoFonte::-ms-track {
+    height: 8px;
+    background: #ddd;
+    border-radius: 5px;
+    border-color: transparent;
+    border-width: 8px 0;
+}
+
+#tamanhoFonte::-ms-thumb {
+    width: 20px;
+    height: 20px;
+    background: #ff6347;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: -6px; /* Ajuste para centralizar a bolinha */
+}
+
+#tamanhoFonte:active::-ms-thumb {
+    background: #ff6347;
+}
+
 /* Ajustes de mídia para celulares */
 @media (max-width: 768px) {
     h1 {

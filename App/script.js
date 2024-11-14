@@ -11,6 +11,14 @@ const instrucoesTela = document.getElementById('instrucoes');
 const fecharInstrucoes = document.getElementById('fecharInstrucoes');
 const popupAdicao = document.getElementById('popupAdicao');
 const btnCancelarPopup = document.getElementById('cancelarPopup');
+const configuracaoBotao = document.getElementById('configuracaoBotao');
+const configuracaoPopup = document.getElementById('configuracaoPopup');
+const tamanhoFonteInput = document.getElementById('tamanhoFonte');
+
+// Atualiza o tamanho da fonte da página ao mover o controle deslizante
+document.getElementById('tamanhoFonte').addEventListener('input', function() {
+    document.body.style.fontSize = this.value + 'px';
+});
 
 let campeoes = [];
 
@@ -168,3 +176,4 @@ instrucoesBotao.addEventListener('click', () => {
 fecharInstrucoes.addEventListener('click', () => {
     instrucoesTela.style.display = 'none'; // Esconde a tela lateral
 });
+
