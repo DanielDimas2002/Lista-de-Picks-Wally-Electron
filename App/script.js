@@ -177,3 +177,9 @@ fecharInstrucoes.addEventListener('click', () => {
     instrucoesTela.style.display = 'none'; // Esconde a tela lateral
 });
 
+const { ipcRenderer } = require('electron');
+
+ipcRenderer.on('salvar-dados', () => {
+    localStorage.setItem('campeoes', JSON.stringify(campeoes)); // Salva os dados no localStorage
+    ipcRenderer.send('dados-salvos'); // Informa o backend que os dados foram salvos
+});
