@@ -6,19 +6,8 @@ const nomeCampeaoInput = document.getElementById('nomeCampeao');
 const partidasCampeaoInput = document.getElementById('partidasCampeao');
 const cancelarPopup = document.getElementById('cancelarPopup');
 const tabelaPicksBody = document.querySelector('#tabelaPicks tbody');
-const instrucoesBotao = document.getElementById('instrucoesBotao');
-const instrucoesTela = document.getElementById('instrucoes');
-const fecharInstrucoes = document.getElementById('fecharInstrucoes');
 const popupAdicao = document.getElementById('popupAdicao');
 const btnCancelarPopup = document.getElementById('cancelarPopup');
-const configuracaoBotao = document.getElementById('configuracaoBotao');
-const configuracaoPopup = document.getElementById('configuracaoPopup');
-const tamanhoFonteInput = document.getElementById('tamanhoFonte');
-
-// Atualiza o tamanho da fonte da página ao mover o controle deslizante
-document.getElementById('tamanhoFonte').addEventListener('input', function() {
-    document.body.style.fontSize = this.value + 'px';
-});
 
 let campeoes = [];
 
@@ -102,7 +91,6 @@ function reduzirVida(index) {
         if (campeoes[index].partidas === 0) {
             campeoes.splice(index, 1);
         }
-
         atualizarTabela();
     }
 }
@@ -142,11 +130,8 @@ function moverParaTopo(index) {
 
 // Função para remover um campeão
 function removerCampeao(index) {
-    const confirmacao = window.confirm(`Wally, tem certeza que deseja excluir ${campeoes[index].nome} da lista?`);
-    if (confirmacao) {
-        campeoes.splice(index, 1);
-        atualizarTabela();
-    }
+    campeoes.splice(index, 1);
+    atualizarTabela();
 }
 
 // Recupera os dados do localStorage ao carregar a página
@@ -158,16 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Função para abrir a tela lateral de instruções
-instrucoesBotao.addEventListener('click', () => {
-    instrucoesTela.style.display = 'block'; // Exibe a tela lateral
-});
-
-// Função para fechar a tela lateral de instruções
-fecharInstrucoes.addEventListener('click', () => {
-    instrucoesTela.style.display = 'none'; // Esconde a tela lateral
-});
-
+// Comunicação com o backend Electron
 const { ipcRenderer } = require('electron');
 
 ipcRenderer.on('salvar-dados', () => {
