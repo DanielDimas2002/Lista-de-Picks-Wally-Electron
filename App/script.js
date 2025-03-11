@@ -98,21 +98,12 @@ function reduzirVida(index) {
     if (campeoes[index].partidas > 0) {
         campeoes[index].partidas -= 1;
 
-        // Se a vida (partidas) chegar a 0, pede confirmação para remover o campeão
+        // Remove automaticamente o campeão se as partidas chegarem a 0
         if (campeoes[index].partidas === 0) {
-            const confirmacao = window.confirm(`Já acabou de trollar com o(a) ${campeoes[index].nome} Wally?`);
-            if (confirmacao) {
-                removerCampeao(index); 
-            } else {
-                // Restaura a vida para 1
-                campeoes[index].partidas = 1; 
-                atualizarTabela(); 
-            }
-        } else {
-            atualizarTabela(); 
+            campeoes.splice(index, 1);
         }
-    } else {
-        alert('O campeão não tem mais partidas restantes.');
+
+        atualizarTabela();
     }
 }
 
