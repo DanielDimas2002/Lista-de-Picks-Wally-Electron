@@ -105,7 +105,7 @@ npm run dist:linux # Linux
 
 ## 👤 Autor
 
-Desenvolvido com 💙 por **[Daniel Dimas de Souza]**  
+Desenvolvido com 💙 por **Daniel Dimas de Souza**  
 Idealizado para as lives do **Wally** com participação do chat.
 
 ---
