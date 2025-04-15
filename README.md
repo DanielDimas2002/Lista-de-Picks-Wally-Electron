@@ -3,126 +3,118 @@
 ---
 
 ```markdown
-# 🎮 Picks do Chat - Sistema de Gerenciamento para Lives
+# 🎮 Picks do Chat
 
-![Badge](https://img.shields.io/badge/status-em%20desenvolvimento-blue)  
-Uma aplicação de desktop desenvolvida com **Electron**, criada especialmente para lives interativas no estilo "chat escolhe o personagem". Ideal para criadores de conteúdo como o **Wally**, que fazem transmissões de jogos como **League of Legends: Wild Rift** 🎥✨
+Sistema de gerenciamento para lives interativas onde o **chat escolhe os personagens**!  
+Desenvolvido para facilitar a organização durante transmissões como as do Wally em **League of Legends: Wild Rift**.
 
 ---
 
-## 📸 Demonstração
+## 📽️ Demonstração
 
-👉 Assista ao vídeo de demonstração no YouTube:  
-[🔗 Clique aqui para assistir](https://youtu.be/2fDeawSibHE?si=kBO1FtG_vCUEzxnG)
+▶️ Assista ao vídeo no YouTube:  
+https://youtu.be/2fDeawSibHE?si=kBO1FtG_vCUEzxnG
 
 ---
 
 ## 🧩 Funcionalidades
 
-✅ **Tabela de Picks**  
-- Nome do personagem  
-- Quantidade de vidas  
-- Ações disponíveis:
+### 🗂️ Tabela de Picks
+- ✅ Nome do personagem
+- ✅ Quantidade de vidas
+- ✅ Ações:
   - ➖ Reduzir vida
   - ✏️ Editar nome ou vidas
-  - 🔼 Subir / 🔽 Descer na lista
+  - 🔼 Subir / 🔽 Descer
   - 🔝 Mover para o topo
-  - 🗑️ Excluir pick
+  - 🗑️ Excluir
 
-✅ **Vidas do Chat**  
-- Nome do jogador  
-- Quantidade de vidas  
-- Ações:
+### ❤️ Vidas do Chat
+- ✅ Nome do jogador
+- ✅ Quantidade de vidas
+- ✅ Ações:
   - ➖ Reduzir vida
   - ✏️ Editar
   - 🗑️ Excluir
 
-✅ **Banco (Sistema de Créditos)**  
-- Nome da pessoa  
-- Valor do crédito (💰 em reais)  
-- Edição direta na tabela  
-- Validação automática e alerta se estiver vazio
+### 💰 Banco de Créditos
+- ✅ Nome da pessoa
+- ✅ Valor em reais (R$)
+- ✅ Edição direta na tabela
+- ⚠️ Alerta para linhas vazias
 
-✅ **Navegação fluida**  
-- Menu lateral com botões para alternar entre as telas
+### 🧭 Navegação
+- Menu lateral com botões para trocar de tela:
+  - Picks do Chat
+  - Vidas do Chat
+  - Banco
 
-✅ **Popup de Adição**
-- Inserção de novos personagens, jogadores e créditos via pop-up
-
----
-
-## 🛠️ Tecnologias utilizadas
-
-- ⚙️ [Electron](https://www.electronjs.org/) - app desktop multiplataforma
-- 🧠 JavaScript + HTML + CSS
-- 🗃️ Armazenamento local em `dados.json`
-- 🎨 Interface personalizada com tema escuro e toques dourados/vermelhos
+### ➕ Pop-up de Adição
+- Inclusão de personagens, jogadores ou créditos com formulário simples
 
 ---
 
-## 💾 Como executar
+## 🛠️ Tecnologias
+
+- **Electron** – Aplicação desktop multiplataforma
+- **JavaScript, HTML, CSS**
+- **Armazenamento local** com `dados.json` (sem banco de dados externo)
+
+---
+
+## 🚀 Como executar
 
 ```bash
-# Clone o repositório
-git clone https://github.com/seu-usuario/nome-do-repositorio.git
-
-# Acesse a pasta
-cd nome-do-repositorio
+# Clone o projeto
+git clone https://github.com/seu-usuario/seu-repo.git
+cd seu-repo
 
 # Instale as dependências
 npm install
 
-# Rode o app localmente
+# Rode o app
 npm start
 ```
 
 ---
 
-## 🖥️ Build para produção
+## 📦 Build para produção
 
 ```bash
-# Build para todas as plataformas (Windows, Mac e Linux)
+# Para todas as plataformas
 npm run dist
 
-# Ou para plataforma específica:
+# Ou individualmente:
 npm run dist:win   # Windows
 npm run dist:mac   # macOS
 npm run dist:linux # Linux
 ```
 
-O instalador será gerado na pasta `dist/`.
+> Os instaladores estarão na pasta `dist/`.
 
 ---
 
-## 🙌 Créditos
+## 💡 Futuras melhorias
 
-Desenvolvido com 💙 por [Seu Nome ou Apelido]  
-Projeto idealizado para auxiliar nas lives de **Wally** com participação ativa do chat!
-
----
-
-## 📌 Observações
-
-- O projeto é local, sem necessidade de internet ou login
-- Os dados são salvos automaticamente
-- Ideal para lives dinâmicas e organização ágil
+- 📊 Estatísticas dos picks
+- 💾 Exportação/importação de dados
+- 🎨 Temas personalizáveis
+- 👥 Suporte a múltiplos streamers
 
 ---
 
-## 🧠 Ideias Futuras
+## 👤 Autor
 
-- 📈 Estatísticas dos picks mais usados
-- 🔄 Importação/exportação de dados
-- 🎭 Temas personalizados para diferentes jogos
-- 🧑‍🤝‍🧑 Multiusuário (mais de um streamer usando simultaneamente)
+Desenvolvido com 💙 por **[Seu Nome]**  
+Idealizado para as lives do **Wally** com participação do chat.
 
 ---
 
-## 🐞 Contribuições e feedback
+## 📬 Contribua!
 
-Sugestões, melhorias e bugs são muito bem-vindos!  
-Abra uma issue ou envie um pull request! 🙌
+Encontrou algo? Tem uma ideia legal?  
+Abra uma _issue_ ou mande um _pull request_!
 
-
-
+---
 ```
+
