@@ -1,0 +1,33 @@
+/* src/componentes/Menu/Menu.module.css */
+.header {
+    background-color: #131313;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .titulo {
+    font-size: 1.6em;
+    color: #f0e6d2;
+    margin: 0;
+  }
+  
+  .nav {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .link {
+    color: #c49e3a;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    transition: color 0.3s;
+  }
+  
+  .link:hover {
+    color: #e5c07b;
+  }
+  
