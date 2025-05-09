@@ -1,0 +1,30 @@
+/* PopUp.module.css */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #2c2c2c;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 90%;
+    width: 400px;
+    color: #f0e6d2;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    z-index: 20;
+}
+
+.botao {
+    background-color: #c49e3a;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.botao:hover {
+    background-color: #b88929;
+}
