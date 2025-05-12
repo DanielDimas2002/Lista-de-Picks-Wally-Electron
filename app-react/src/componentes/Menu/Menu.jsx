@@ -9,8 +9,8 @@ function Menu() {
             <h1 className={styles.titulo}>Sistema do Wally</h1>
             <nav className={styles.nav}>
                 <Link to="/picks" className={styles.link}>📋 Picks</Link>
-                <Link to="/vida" className={styles.link}>❤️ Vidas</Link>
-                <Link to="banco" className={styles.link}>💰 Banco</Link>
+                <Link to="/vidas" className={styles.link}>❤️ Vidas</Link>
+                <Link to="/banco" className={styles.link}>💰 Banco</Link>
             </nav>
         </header>
     );
