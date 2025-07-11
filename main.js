@@ -1,8 +1,9 @@
-// Importa os módulos 'app', 'BrowserWindow' e 'ipcMain' do Electron
+// Importa os módulos necessários do Electron e Node
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
+const fs = require("fs");
 
-let mainWindow;
+let mainWindow; // Armazena a referência da janela principal
 
 // Função responsável por criar a janela principal do aplicativo
 function createWindow() {
@@ -10,35 +11,59 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'App', 'preload.js'), // Preload adequado para comunicação segura
-      nodeIntegration: true // Permite integração com Node.js
+      preload: path.join(__dirname, 'app-react', 'preload.js'), // ⚠️ Ponte segura entre React e Node
+      contextIsolation: true,  // Mantém o preload isolado do contexto global
+      nodeIntegration: false   // 🔒 Desativa acesso direto ao Node pelo front-end
     }
   });
 
-  mainWindow.loadFile(path.join(__dirname, 'App', 'Picks_do_Chat.html'));
+  // Carrega o index.html do React (build final ou dev)
+  mainWindow.loadFile(path.join(__dirname, 'app-react', 'public', 'index.html'));
 
-  // Evento disparado quando a janela for fechada
+  // Quando a janela for fechada, libera o recurso
   mainWindow.on('close', () => {
-    mainWindow = null; // Libera a memória corretamente
+    mainWindow = null;
   });
 }
 
-// Ouve o evento do frontend para salvar dados antes de fechar
-ipcMain.on('salvar-dados', () => {
-  mainWindow.webContents.send('dados-salvos'); // Notifica o frontend para salvar antes de sair
+// Escuta pedidos do React para salvar dados em arquivos JSON
+ipcMain.on("salvar-dados", (event, tipo, dados) => {
+  const caminho = path.join(__dirname, "app-react", "data", `${tipo}.json`);
+  
+  fs.readFile(caminho, "utf8", (erro, conteudo) => {
+    let lista = [];
+    
+    if (!erro) {
+      try {
+        lista = JSON.parse(conteudo); // Tenta carregar dados já existentes
+      } catch (e) {
+        console.log("Erro ao converter JSON:", e); // Em caso de arquivo corrompido
+      }
+    }
+
+    lista.push(dados); // Adiciona os novos dados recebidos
+
+    fs.writeFile(caminho, JSON.stringify(lista, null, 2), (erro) => {
+      if (erro) {
+        console.error("Erro ao salvar:", erro);
+      } else {
+        console.log(`✅ Dados salvos em ${tipo}.json`);
+      }
+    });
+  });
 });
 
-// Quando o Electron estiver pronto, cria a janela
+// Cria a janela quando o app estiver pronto
 app.whenReady().then(createWindow);
 
-// Fecha completamente o app no Windows/Linux quando todas as janelas são fechadas
+// Fecha completamente o app em Windows/Linux
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
   }
 });
 
-// Reabre a janela no macOS quando o ícone do app for clicado
+// Reabre a janela no macOS quando o ícone for clicado
 app.on('activate', () => {
   if (mainWindow === null) {
     createWindow();
