@@ -16,14 +16,17 @@ function App() {
   const [banco, setBanco] = useState([]);
 
   const handleCadastrarPick = (nome, vidas) => {
+    console.log("✅ Recebido no App:", nome, vidas) 
     setPicks([...picks, { nome, vidas: parseInt(vidas) }]);
   };
 
   const handleCadastrarVida = (nome, vidas) => {
+    console.log("✅ Recebido no App:", nome, vidas) 
     setVidas([...vidas, { nome, vidas: parseInt(vidas) }]);
   };
 
   const handleCadastrarBanco = (nome, valor) => {
+    console.log("✅ Recebido no App:", nome, valor) 
     setBanco([...banco, { nome, valor: parseInt(valor) }]);
   };
 
