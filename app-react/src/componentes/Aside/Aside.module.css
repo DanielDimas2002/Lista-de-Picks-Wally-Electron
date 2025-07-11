@@ -9,7 +9,8 @@
   gap: 10px;
   position: fixed;
   right: 0;
-  top: 0;
+  top: 60px; /* 🔧 altura do menu */
   bottom: 0;
   overflow-y: auto;
 }
+  

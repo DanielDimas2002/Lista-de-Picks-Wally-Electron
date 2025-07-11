@@ -31,7 +31,7 @@ function App() {
   return (
 
       <div style={{ display: "flex" }}>
-        <div style={{ flex: 1 }}>
+        <div style={{ flex: 1, paddingTop: "60px" }}>
           <Menu />
           <Routes>
             <Route path="/picks" element={<TabelaPick picks={picks} />} />
