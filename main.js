@@ -11,14 +11,15 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'app-react', 'preload.js'), // ⚠️ Ponte segura entre React e Node
+      preload: path.join(__dirname, 'preload.js'), // <- novo caminho, fora do app-react// ⚠️ Ponte segura entre React e Node
       contextIsolation: true,  // Mantém o preload isolado do contexto global
       nodeIntegration: false   // 🔒 Desativa acesso direto ao Node pelo front-end
     }
   });
 
   // Carrega o index.html do React (build final ou dev)
-  mainWindow.loadFile(path.join(__dirname, 'app-react', 'public', 'index.html'));
+  mainWindow.loadFile(path.join(__dirname, 'app-react', 'build', 'index.html'));
+  mainWindow.webContents.openDevTools();
 
   // Quando a janela for fechada, libera o recurso
   mainWindow.on('close', () => {
@@ -29,10 +30,10 @@ function createWindow() {
 // Escuta pedidos do React para salvar dados em arquivos JSON
 ipcMain.on("salvar-dados", (event, tipo, dados) => {
   const caminho = path.join(__dirname, "app-react", "data", `${tipo}.json`);
-  
+
   fs.readFile(caminho, "utf8", (erro, conteudo) => {
     let lista = [];
-    
+
     if (!erro) {
       try {
         lista = JSON.parse(conteudo); // Tenta carregar dados já existentes
