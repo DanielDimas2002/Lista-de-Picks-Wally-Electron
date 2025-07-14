@@ -10,5 +10,9 @@
   {
     "nome": "45",
     "valor": 55
+  },
+  {
+    "nome": "",
+    "valor": null
   }
 ]

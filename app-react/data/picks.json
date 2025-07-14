@@ -14,5 +14,13 @@
   {
     "nome": "Daniel",
     "vidas": 89
+  },
+  {
+    "nome": "",
+    "vidas": null
+  },
+  {
+    "nome": "",
+    "vidas": null
   }
 ]

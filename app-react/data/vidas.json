@@ -10,5 +10,9 @@
   {
     "nome": "80",
     "vidas": 45
+  },
+  {
+    "nome": "",
+    "vidas": null
   }
 ]

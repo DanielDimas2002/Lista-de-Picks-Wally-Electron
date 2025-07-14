@@ -1,9 +1,8 @@
-// Aside/Aside.jsx
 import React, { useState } from "react";
 import styles from "./Aside.module.css";
 
 function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco }) {
-  // 🎯 Estados locais para os campos de input
+  // 🎯 Estados dos campos de input
   const [nomePick, setNomePick] = useState("");
   const [vidasPick, setVidasPick] = useState("");
 
@@ -12,6 +11,11 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
 
   const [nomeBanco, setNomeBanco] = useState("");
   const [valorBanco, setValorBanco] = useState("");
+
+  // ✅ Estados de feedback de sucesso
+  const [sucessoPick, setSucessoPick] = useState(false);
+  const [sucessoVida, setSucessoVida] = useState(false);
+  const [sucessoBanco, setSucessoBanco] = useState(false);
 
   return (
     <aside className={styles.aside}>
@@ -28,11 +32,17 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
         value={vidasPick}
         onChange={(e) => setVidasPick(e.target.value)}
       />
-      <button onClick={() => {
-        console.log("📋Enviando Pick:", nomePick, vidasPick);
-        handleCadastrarPick(nomePick, vidasPick);
-      }}>
-        Cadastrar Pick
+      <button
+        className={sucessoPick ? styles.botaoSucesso : styles.botaoPadrao}
+        onClick={() => {
+          handleCadastrarPick(nomePick, vidasPick);      // Envia para o App
+          setNomePick("");                               // Limpa campos
+          setVidasPick("");
+          setSucessoPick(true);                          // Ativa feedback
+          setTimeout(() => setSucessoPick(false), 2000); // Volta ao normal após 2s
+        }}
+      >
+        {sucessoPick ? "✅ Cadastrado" : "Cadastrar Pick"}
       </button>
 
       <h3>❤️ Cadastro de Vidas</h3>
@@ -48,11 +58,17 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
         value={vidasVida}
         onChange={(e) => setVidasVida(e.target.value)}
       />
-      <button onClick={() => {
-        console.log("❤️Enviando Vida:", nomeVida, vidasVida);
-        handleCadastrarVida(nomeVida, vidasVida);
-      }}>
-        Cadastrar Vida
+      <button
+        className={sucessoVida ? styles.botaoSucesso : styles.botaoPadrao}
+        onClick={() => {
+          handleCadastrarVida(nomeVida, vidasVida);
+          setNomeVida("");
+          setVidasVida("");
+          setSucessoVida(true);
+          setTimeout(() => setSucessoVida(false), 2000);
+        }}
+      >
+        {sucessoVida ? "✅ Cadastrado" : "Cadastrar Vida"}
       </button>
 
       <h3>💰 Cadastro de Banco</h3>
@@ -68,11 +84,17 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
         value={valorBanco}
         onChange={(e) => setValorBanco(e.target.value)}
       />
-      <button onClick={() => {
-        console.log("💰Enviando Banco:", nomeBanco, valorBanco);
-        handleCadastrarBanco(nomeBanco, valorBanco);
-      }}>
-        Cadastrar Banco
+      <button
+        className={sucessoBanco ? styles.botaoSucesso : styles.botaoPadrao}
+        onClick={() => {
+          handleCadastrarBanco(nomeBanco, valorBanco);
+          setNomeBanco("");
+          setValorBanco("");
+          setSucessoBanco(true);
+          setTimeout(() => setSucessoBanco(false), 2000);
+        }}
+      >
+        {sucessoBanco ? "✅ Cadastrado" : "Cadastrar Banco"}
       </button>
     </aside>
   );

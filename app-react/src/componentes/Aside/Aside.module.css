@@ -14,3 +14,22 @@
   overflow-y: auto;
 }
 
+.botaoPadrao {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.botaoSucesso {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: default;
+}
+
+
