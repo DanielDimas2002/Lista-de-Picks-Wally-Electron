@@ -1,8 +1,9 @@
+// src/componentes/Aside/Aside.jsx
 import React, { useState } from "react";
 import styles from "./Aside.module.css";
 
 function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco }) {
-  // 🎯 Estados dos campos de input
+  // 🎯 Estados dos inputs
   const [nomePick, setNomePick] = useState("");
   const [vidasPick, setVidasPick] = useState("");
 
@@ -12,10 +13,19 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
   const [nomeBanco, setNomeBanco] = useState("");
   const [valorBanco, setValorBanco] = useState("");
 
-  // ✅ Estados de feedback de sucesso
-  const [sucessoPick, setSucessoPick] = useState(false);
-  const [sucessoVida, setSucessoVida] = useState(false);
-  const [sucessoBanco, setSucessoBanco] = useState(false);
+  // ✅ Estados dos botões para feedback
+  const [botaoPick, setBotaoPick] = useState("Cadastrar Pick");
+  const [botaoVida, setBotaoVida] = useState("Cadastrar Vida");
+  const [botaoBanco, setBotaoBanco] = useState("Cadastrar Banco");
+
+  const [corPick, setCorPick] = useState("botaoPadrao");    // "", "verde", "vermelho"
+  const [corVida, setCorVida] = useState("botaoPadrao");
+  const [corBanco, setCorBanco] = useState("botaoPadrao");
+
+  // 🧠 Função auxiliar para validação
+  function campoVazio(...valores) {
+    return valores.some(v => v === "" || v === null || v === undefined);
+  }
 
   return (
     <aside className={styles.aside}>
@@ -33,16 +43,25 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
         onChange={(e) => setVidasPick(e.target.value)}
       />
       <button
-        className={sucessoPick ? styles.botaoSucesso : styles.botaoPadrao}
+        className={`${styles.botao} ${corPick ? styles[corPick] : ""}`}
         onClick={() => {
-          handleCadastrarPick(nomePick, vidasPick);      // Envia para o App
-          setNomePick("");                               // Limpa campos
+          if (campoVazio(nomePick, vidasPick) || parseInt(vidasPick) < 1) {
+            setBotaoPick("Preencha corretamente!");
+            setCorPick("botaoErro");
+            return;
+          }
+          handleCadastrarPick(nomePick, vidasPick);
+          setBotaoPick("Cadastrado!");
+          setCorPick("botaoSucesso");
+          setNomePick("");
           setVidasPick("");
-          setSucessoPick(true);                          // Ativa feedback
-          setTimeout(() => setSucessoPick(false), 2000); // Volta ao normal após 2s
+          setTimeout(() => {
+            setBotaoPick("Cadastrar Pick");
+            setCorPick("botaoPadrao");
+          }, 1500);
         }}
       >
-        {sucessoPick ? "✅ Cadastrado" : "Cadastrar Pick"}
+        {botaoPick}
       </button>
 
       <h3>❤️ Cadastro de Vidas</h3>
@@ -59,16 +78,25 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
         onChange={(e) => setVidasVida(e.target.value)}
       />
       <button
-        className={sucessoVida ? styles.botaoSucesso : styles.botaoPadrao}
+        className={`${styles.botao} ${corVida ? styles[corVida] : ""}`}
         onClick={() => {
+          if (campoVazio(nomeVida, vidasVida) || parseInt(vidasVida) < 1) {
+            setBotaoVida("Preencha corretamente!");
+            setCorVida("botaoErro");
+            return;
+          }
           handleCadastrarVida(nomeVida, vidasVida);
+          setBotaoVida("Cadastrado!");
+          setCorVida("botaoSucesso");
           setNomeVida("");
           setVidasVida("");
-          setSucessoVida(true);
-          setTimeout(() => setSucessoVida(false), 2000);
+          setTimeout(() => {
+            setBotaoVida("Cadastrar Vida");
+            setCorVida("botaoPadrao");
+          }, 1500);
         }}
       >
-        {sucessoVida ? "✅ Cadastrado" : "Cadastrar Vida"}
+        {botaoVida}
       </button>
 
       <h3>💰 Cadastro de Banco</h3>
@@ -85,16 +113,25 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
         onChange={(e) => setValorBanco(e.target.value)}
       />
       <button
-        className={sucessoBanco ? styles.botaoSucesso : styles.botaoPadrao}
+        className={`${styles.botao} ${corBanco ? styles[corBanco] : ""}`}
         onClick={() => {
+          if (campoVazio(nomeBanco, valorBanco) || parseInt(valorBanco) < 1) {
+            setBotaoBanco("Preencha corretamente!");
+            setCorBanco("botaoErro");
+            return;
+          }
           handleCadastrarBanco(nomeBanco, valorBanco);
+          setBotaoBanco("Cadastrado!");
+          setCorBanco("botaoSucesso");
           setNomeBanco("");
           setValorBanco("");
-          setSucessoBanco(true);
-          setTimeout(() => setSucessoBanco(false), 2000);
+          setTimeout(() => {
+            setBotaoBanco("Cadastrar Banco");
+            setCorBanco("botaoPadrao");
+          }, 1500);
         }}
       >
-        {sucessoBanco ? "✅ Cadastrado" : "Cadastrar Banco"}
+        {botaoBanco}
       </button>
     </aside>
   );

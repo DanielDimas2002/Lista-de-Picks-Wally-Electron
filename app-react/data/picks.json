@@ -22,5 +22,21 @@
   {
     "nome": "",
     "vidas": null
+  },
+  {
+    "nome": "wally2",
+    "vidas": 8
+  },
+  {
+    "nome": "oi",
+    "vidas": 10
+  },
+  {
+    "nome": "Teste",
+    "vidas": 5
+  },
+  {
+    "nome": "89",
+    "vidas": 54
   }
 ]
