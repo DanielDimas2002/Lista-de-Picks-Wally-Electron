@@ -18,5 +18,13 @@
   {
     "nome": "teste3",
     "vidas": 5
+  },
+  {
+    "nome": "Bom dia3",
+    "vidas": 3
+  },
+  {
+    "nome": "Bom dia ",
+    "vidas": 45
   }
 ]

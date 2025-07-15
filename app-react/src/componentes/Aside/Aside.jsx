@@ -1,15 +1,13 @@
 // src/componentes/Aside/Aside.jsx
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styles from "./Aside.module.css";
 
 function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco }) {
   // 🎯 Estados dos inputs
   const [nomePick, setNomePick] = useState("");
   const [vidasPick, setVidasPick] = useState("");
-
   const [nomeVida, setNomeVida] = useState("");
   const [vidasVida, setVidasVida] = useState("");
-
   const [nomeBanco, setNomeBanco] = useState("");
   const [valorBanco, setValorBanco] = useState("");
 
@@ -18,13 +16,28 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
   const [botaoVida, setBotaoVida] = useState("Cadastrar Vida");
   const [botaoBanco, setBotaoBanco] = useState("Cadastrar Banco");
 
-  const [corPick, setCorPick] = useState("botaoPadrao");    // "", "verde", "vermelho"
+  const [corPick, setCorPick] = useState("botaoPadrao");
   const [corVida, setCorVida] = useState("botaoPadrao");
   const [corBanco, setCorBanco] = useState("botaoPadrao");
 
-  // 🧠 Função auxiliar para validação
+  // 🔁 Refs para armazenar os timers ativos
+  const timerPick = useRef(null);
+  const timerVida = useRef(null);
+  const timerBanco = useRef(null);
+
   function campoVazio(...valores) {
     return valores.some(v => v === "" || v === null || v === undefined);
+  }
+
+  function resetarBotao(setTexto, setCor, textoOriginal, timerRef) {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current); // cancela o anterior
+    }
+    timerRef.current = setTimeout(() => {
+      setTexto(textoOriginal);
+      setCor("botaoPadrao");
+      timerRef.current = null; // limpa o ref
+    }, 1500);
   }
 
   return (
@@ -48,6 +61,7 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
           if (campoVazio(nomePick, vidasPick) || parseInt(vidasPick) < 1) {
             setBotaoPick("Preencha corretamente!");
             setCorPick("botaoErro");
+            resetarBotao(setBotaoPick, setCorPick, "Cadastrar Pick", timerPick);
             return;
           }
           handleCadastrarPick(nomePick, vidasPick);
@@ -55,10 +69,7 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
           setCorPick("botaoSucesso");
           setNomePick("");
           setVidasPick("");
-          setTimeout(() => {
-            setBotaoPick("Cadastrar Pick");
-            setCorPick("botaoPadrao");
-          }, 1500);
+          resetarBotao(setBotaoPick, setCorPick, "Cadastrar Pick", timerPick);
         }}
       >
         {botaoPick}
@@ -83,6 +94,7 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
           if (campoVazio(nomeVida, vidasVida) || parseInt(vidasVida) < 1) {
             setBotaoVida("Preencha corretamente!");
             setCorVida("botaoErro");
+            resetarBotao(setBotaoVida, setCorVida, "Cadastrar Vida", timerVida);
             return;
           }
           handleCadastrarVida(nomeVida, vidasVida);
@@ -90,10 +102,7 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
           setCorVida("botaoSucesso");
           setNomeVida("");
           setVidasVida("");
-          setTimeout(() => {
-            setBotaoVida("Cadastrar Vida");
-            setCorVida("botaoPadrao");
-          }, 1500);
+          resetarBotao(setBotaoVida, setCorVida, "Cadastrar Vida", timerVida);
         }}
       >
         {botaoVida}
@@ -118,6 +127,7 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
           if (campoVazio(nomeBanco, valorBanco) || parseInt(valorBanco) < 1) {
             setBotaoBanco("Preencha corretamente!");
             setCorBanco("botaoErro");
+            resetarBotao(setBotaoBanco, setCorBanco, "Cadastrar Banco", timerBanco);
             return;
           }
           handleCadastrarBanco(nomeBanco, valorBanco);
@@ -125,10 +135,7 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
           setCorBanco("botaoSucesso");
           setNomeBanco("");
           setValorBanco("");
-          setTimeout(() => {
-            setBotaoBanco("Cadastrar Banco");
-            setCorBanco("botaoPadrao");
-          }, 1500);
+          resetarBotao(setBotaoBanco, setCorBanco, "Cadastrar Banco", timerBanco);
         }}
       >
         {botaoBanco}
