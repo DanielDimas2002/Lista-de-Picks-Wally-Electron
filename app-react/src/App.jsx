@@ -9,14 +9,18 @@ import TabelaBanco from "./componentes/TabelaBanco/TabelaBanco";
 
 function App() {
 
-  const [picks, setPicks] = useState([]);
-  const [vidas, setVidas] = useState([]);
+  const [listaVidas, setListaVida] = useState([
+    { nome: "Jogador 1", vidas: 3 },
+    { nome: "Jogador 2", vidas: 6 },
+    { nome: "Jogador 3", vidas: 8 },
+  ]);
+
   const [banco, setBanco] = useState([]);
 
   const [listaPicks, setListaPicks] = useState([
     { nome: "Ahri", vidas: 3 },
     { nome: "Lux", vidas: 3 },
-    { nome: "Jhin", vidas: 3 }
+    { nome: "Jhin", vidas: 3 },
   ])
 
   // 🛡️ Reduz 1 vida do campeão selecionado
@@ -26,17 +30,26 @@ function App() {
     setListaPicks(novaLista);
   }
 
+  // 🛡️ Reduz 1 vida do jogador na TabelaVida
+  function reduzirVidaJogador(indice) {
+    const novaLista = [...listaVidas];
+    novaLista[indice].vidas--;
+    setListaVida(novaLista);
+  }
+
+
   // ⬆️ Move o campeão uma posição acima
   function subirLinha(indice) {
     if (indice === 0) return; // já está no topo
 
     const novaLista = [...listaPicks];
     const item = novaLista[indice];
-    novaLista.splice(indice, 1);
-    novaLista.splice(indice - 1, 0, item);
+    novaLista.splice(indice, 1); // remove do lugar atual
+    novaLista.splice(indice - 1, 0, item); // insere na posição acima
     setListaPicks(novaLista);
   }
 
+  // 🗑️ Remove o campeão da lista
   function excluirPick(indice) {
     const novaLista = listaPicks.filter((_, i) => i !== indice);
     setListaPicks(novaLista);
@@ -45,14 +58,14 @@ function App() {
   const handleCadastrarPick = (nome, vidas) => {
     const novoPick = { nome, vidas: parseInt(vidas) };
     console.log("✅ Recebido no App:", novoPick);
-    setPicks([...picks, novoPick]);
+    setListaPicks([...listaPicks, novoPick]);
     window.api.salvarDados("picks", novoPick); // Salvando no JSON
   };
 
   const handleCadastrarVida = (nome, vidas) => {
     const novaVida = { nome, vidas: parseInt(vidas) };
     console.log("✅ Recebido no App:", novaVida);
-    setVidas([...vidas, novaVida]);
+    setListaVida([...listaVidas, novaVida]);
     window.api.salvarDados("vidas", novaVida); // Salvando no JSON
   };
 
@@ -69,7 +82,7 @@ function App() {
         <Menu />
         <Routes>
           <Route path="/picks" element={<TabelaPick listaPicks={listaPicks} aoReduzirVida={reduzirVida} aoSubir={subirLinha} aoExcluir={excluirPick} />} />
-          <Route path="/vidas" element={<TabelaVida vidas={vidas} />} />
+          <Route path="/vidas" element={<TabelaVida vidas={listaVidas} aoReduzirVida={reduzirVidaJogador} />} />
           <Route path="/banco" element={<TabelaBanco banco={banco} />} />
         </Routes>
       </div>
