@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Menu from './componentes/Menu/Menu';
-import Aside from "./componentes/Aside/Aside"
+import Aside from "./componentes/Aside/Aside";
 import TabelaVida from "./componentes/TabelaVida/TabelaVida";
 import TabelaPick from "./componentes/TabelaPick/TabelaPick";
 import TabelaBanco from "./componentes/TabelaBanco/TabelaBanco";
@@ -15,13 +15,17 @@ function App() {
     { nome: "Jogador 3", vidas: 8 },
   ]);
 
-  const [banco, setBanco] = useState([]);
+  const [listaBanco, setListaBanco] = useState([
+    { nome: "Ana", valor: 150 },
+    { nome: "Carlos", valor: 300 },
+    { nome: "Beatriz", valor: 220 },
+  ]);
 
   const [listaPicks, setListaPicks] = useState([
     { nome: "Ahri", vidas: 3 },
     { nome: "Lux", vidas: 3 },
     { nome: "Jhin", vidas: 3 },
-  ])
+  ]);
 
   // 🛡️ Reduz 1 vida do campeão selecionado
   function reduzirVida(indice) {
@@ -37,15 +41,21 @@ function App() {
     setListaVida(novaLista);
   }
 
+  // 💰 Edita o Crédito  
+  function editarValorBanco(indice, novoValor) {
+    const novaLista = [...listaBanco];
+    novaLista[indice].valor = parseInt(novoValor);
+    setListaBanco(novaLista);
+  }
 
   // ⬆️ Move o campeão uma posição acima
   function subirLinha(indice) {
-    if (indice === 0) return; // já está no topo
+    if (indice === 0) return;
 
     const novaLista = [...listaPicks];
     const item = novaLista[indice];
-    novaLista.splice(indice, 1); // remove do lugar atual
-    novaLista.splice(indice - 1, 0, item); // insere na posição acima
+    novaLista.splice(indice, 1);
+    novaLista.splice(indice - 1, 0, item);
     setListaPicks(novaLista);
   }
 
@@ -55,25 +65,24 @@ function App() {
     setListaPicks(novaLista);
   }
 
+  // Funções dos Formulário
+
   const handleCadastrarPick = (nome, vidas) => {
     const novoPick = { nome, vidas: parseInt(vidas) };
     console.log("✅ Recebido no App:", novoPick);
     setListaPicks([...listaPicks, novoPick]);
-    window.api.salvarDados("picks", novoPick); // Salvando no JSON
   };
 
   const handleCadastrarVida = (nome, vidas) => {
     const novaVida = { nome, vidas: parseInt(vidas) };
     console.log("✅ Recebido no App:", novaVida);
     setListaVida([...listaVidas, novaVida]);
-    window.api.salvarDados("vidas", novaVida); // Salvando no JSON
   };
 
   const handleCadastrarBanco = (nome, valor) => {
     const novoCredito = { nome, valor: parseInt(valor) };
     console.log("✅ Recebido no App:", novoCredito);
-    setBanco([...banco, novoCredito]);
-    window.api.salvarDados("banco", novoCredito); // Salvando no JSON
+    setListaBanco([...listaBanco, novoCredito]);
   };
 
   return (
@@ -81,9 +90,23 @@ function App() {
       <div style={{ flex: 1, paddingTop: "60px" }}>
         <Menu />
         <Routes>
-          <Route path="/picks" element={<TabelaPick listaPicks={listaPicks} aoReduzirVida={reduzirVida} aoSubir={subirLinha} aoExcluir={excluirPick} />} />
-          <Route path="/vidas" element={<TabelaVida vidas={listaVidas} aoReduzirVida={reduzirVidaJogador} />} />
-          <Route path="/banco" element={<TabelaBanco banco={banco} />} />
+          <Route path="/picks" element={
+            <TabelaPick
+              listaPicks={listaPicks}
+              aoReduzirVida={reduzirVida}
+              aoSubir={subirLinha}
+              aoExcluir={excluirPick}
+            />} />
+          <Route path="/vidas" element={
+            <TabelaVida
+              vidas={listaVidas}
+              aoReduzirVida={reduzirVidaJogador}
+            />} />
+          <Route path="/banco" element={
+            <TabelaBanco
+              banco={listaBanco}
+              aoEditarValor={editarValorBanco}
+            />} />
         </Routes>
       </div>
       <Aside

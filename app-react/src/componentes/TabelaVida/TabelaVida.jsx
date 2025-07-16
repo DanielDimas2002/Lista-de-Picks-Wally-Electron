@@ -1,7 +1,8 @@
 import React from "react";
+import LinhaVida from "./LinhaVida";
 import styles from "./TabelaVida.module.css";
 
-function TabelaVida({ vidas }) {
+function TabelaVida({ vidas, aoReduzirVida }) {
   return (
     <section className={styles.container}>
       <h1>❤️ Tabela Vida</h1>
@@ -15,13 +16,13 @@ function TabelaVida({ vidas }) {
         </thead>
         <tbody>
           {vidas.map((jogador, indice) => (
-            <tr key={indice}>
-              <td>{jogador.nome}</td>
-              <td>{jogador.vidas}</td>
-              <td>
-                <button title="Reduzir 1 vida">🛡️</button>
-              </td>
-            </tr>
+            <LinhaVida
+              key={indice}
+              indice={indice}
+              nome={jogador.nome}
+              vidas={jogador.vidas}
+              aoReduzirVida={aoReduzirVida}
+            />
           ))}
         </tbody>
       </table>
