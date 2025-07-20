@@ -9,6 +9,8 @@ import TabelaBanco from "./componentes/TabelaBanco/TabelaBanco";
 
 function App() {
 
+  // Arrays temporários para testes
+
   const [listaVidas, setListaVida] = useState([
     { nome: "Jogador 1", vidas: 3 },
     { nome: "Jogador 2", vidas: 6 },
@@ -27,6 +29,29 @@ function App() {
     { nome: "Jhin", vidas: 3 },
   ]);
 
+  // Funções dos Formulário
+
+  const handleCadastrarPick = (nome, vidas) => {
+    const novoPick = { nome, vidas: parseInt(vidas) };
+    console.log("✅ Recebido no App:", novoPick);
+    setListaPicks([...listaPicks, novoPick]);
+    window.api.salvarDados("picks", novoPick); // Salvando no JSON
+  };
+
+  const handleCadastrarVida = (nome, vidas) => {
+    const novaVida = { nome, vidas: parseInt(vidas) };
+    console.log("✅ Recebido no App:", novaVida);
+    setListaVida([...listaVidas, novaVida]);
+    window.api.salvarDados("vidas", novaVida); // Salvando no JSON
+  };
+
+  const handleCadastrarBanco = (nome, valor) => {
+    const novoCredito = { nome, valor: parseInt(valor) };
+    console.log("✅ Recebido no App:", novoCredito);
+    setListaBanco([...listaBanco, novoCredito]);
+    window.api.salvarDados("banco", novoCredito); // Salvando no JSON
+  };
+
   // 🛡️ Reduz 1 vida do campeão selecionado
   function reduzirVida(indice) {
     const novaLista = [...listaPicks];
@@ -34,21 +59,7 @@ function App() {
     setListaPicks(novaLista);
   }
 
-  // 🛡️ Reduz 1 vida do jogador na TabelaVida
-  function reduzirVidaJogador(indice) {
-    const novaLista = [...listaVidas];
-    novaLista[indice].vidas--;
-    setListaVida(novaLista);
-  }
-
-  // 💰 Edita o Crédito  
-  function editarValorBanco(indice, novoValor) {
-    const novaLista = [...listaBanco];
-    novaLista[indice].valor = parseInt(novoValor);
-    setListaBanco(novaLista);
-  }
-
-  // ⬆️ Move o campeão uma posição acima
+   // ⬆️ Move o campeão uma posição acima
   function subirLinha(indice) {
     if (indice === 0) return;
 
@@ -65,25 +76,19 @@ function App() {
     setListaPicks(novaLista);
   }
 
-  // Funções dos Formulário
+  // 🛡️ Reduz 1 vida do jogador na TabelaVida
+  function reduzirVidaJogador(indice) {
+    const novaLista = [...listaVidas];
+    novaLista[indice].vidas--;
+    setListaVida(novaLista);
+  }
 
-  const handleCadastrarPick = (nome, vidas) => {
-    const novoPick = { nome, vidas: parseInt(vidas) };
-    console.log("✅ Recebido no App:", novoPick);
-    setListaPicks([...listaPicks, novoPick]);
-  };
-
-  const handleCadastrarVida = (nome, vidas) => {
-    const novaVida = { nome, vidas: parseInt(vidas) };
-    console.log("✅ Recebido no App:", novaVida);
-    setListaVida([...listaVidas, novaVida]);
-  };
-
-  const handleCadastrarBanco = (nome, valor) => {
-    const novoCredito = { nome, valor: parseInt(valor) };
-    console.log("✅ Recebido no App:", novoCredito);
-    setListaBanco([...listaBanco, novoCredito]);
-  };
+  // 💰 Edita o Crédito  
+  function editarValorBanco(indice, novoValor) {
+    const novaLista = [...listaBanco];
+    novaLista[indice].valor = parseInt(novoValor);
+    setListaBanco(novaLista);
+  }
 
   return (
     <div style={{ display: "flex" }}>
