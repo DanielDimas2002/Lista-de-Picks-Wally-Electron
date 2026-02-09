@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Menu from './componentes/Menu/Menu';
@@ -8,27 +8,6 @@ import TabelaPick from "./componentes/TabelaPick/TabelaPick";
 import TabelaBanco from "./componentes/TabelaBanco/TabelaBanco";
 
 function App() {
-
-  // Arrays temporários para testes
-
-  const [listaVidas, setListaVida] = useState([
-    { nome: "Jogador 1", vidas: 3 },
-    { nome: "Jogador 2", vidas: 6 },
-    { nome: "Jogador 3", vidas: 8 },
-  ]);
-
-  const [listaBanco, setListaBanco] = useState([
-    { nome: "Ana", valor: 150 },
-    { nome: "Carlos", valor: 300 },
-    { nome: "Beatriz", valor: 220 },
-  ]);
-
-  const [listaPicks, setListaPicks] = useState([
-    { nome: "Ahri", vidas: 3 },
-    { nome: "Lux", vidas: 3 },
-    { nome: "Jhin", vidas: 3 },
-  ]);
-
   // Funções dos Formulário
 
   const handleCadastrarPick = (nome, vidas) => {
@@ -59,7 +38,7 @@ function App() {
     setListaPicks(novaLista);
   }
 
-   // ⬆️ Move o campeão uma posição acima
+  // ⬆️ Move o campeão uma posição acima
   function subirLinha(indice) {
     if (indice === 0) return;
 
@@ -89,6 +68,32 @@ function App() {
     novaLista[indice].valor = parseInt(novoValor);
     setListaBanco(novaLista);
   }
+
+  // 📥 Carrega os dados reais do JSON ao iniciar o aplicativo
+  useEffect(function () {
+    async function carregarDados() {
+      try {
+        const dadosPick = await window.api.lerDados("picks");
+        const dadosVidas = await window.api.lerDados("vidas");
+        const dadosBanco = await window.api.lerDados("banco");
+
+        if (Array.isArray(dadosPick)) {
+          setListaPicks(dadosPick);
+        }
+        if (Array.isArray(dadosVidas)) {
+          setListaVida(dadosVidas);
+        }
+        if (Array.isArray(dadosBanco)) {
+          setListaBanco(dadosBanco)
+        }
+        console.log("📥 Dados carregados do JSON com sucesso")
+      } catch (erro) {
+        console.log("❌ Erro ao carregar dados:", erro)
+      }
+    }
+
+    carregarDados();
+  }, []);
 
   return (
     <div style={{ display: "flex" }}>

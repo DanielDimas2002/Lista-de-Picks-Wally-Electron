@@ -3,7 +3,7 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const fs = require("fs");
 
-let mainWindow; // Armazena a referência da janela principal
+let mainWindow;
 
 // Função responsável por criar a janela principal do aplicativo
 function createWindow() {
@@ -11,61 +11,79 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'), // <- novo caminho, fora do app-react// ⚠️ Ponte segura entre React e Node
-      contextIsolation: true,  // Mantém o preload isolado do contexto global
-      nodeIntegration: false   // 🔒 Desativa acesso direto ao Node pelo front-end
+      preload: path.join(__dirname, 'preload.js'),
+      contextIsolation: true,
+      nodeIntegration: false
     }
   });
 
-  // Carrega o index.html do React (build final ou dev)
   mainWindow.loadFile(path.join(__dirname, 'app-react', 'build', 'index.html'));
   mainWindow.webContents.openDevTools();
 
-  // Quando a janela for fechada, libera o recurso
-  mainWindow.on('close', () => {
+  mainWindow.on('close', function () {
     mainWindow = null;
   });
 }
 
-// Escuta pedidos do React para salvar dados em arquivos JSON
-ipcMain.on("salvar-dados", (event, tipo, dados) => {
-  const caminho = path.join(__dirname, "app-react", "data", `${tipo}.json`);
-
-  fs.readFile(caminho, "utf8", (erro, conteudo) => {
-    let lista = [];
-
-    if (!erro) {
-      try {
-        lista = JSON.parse(conteudo); // Tenta carregar dados já existentes
-      } catch (e) {
-        console.log("Erro ao converter JSON:", e); // Em caso de arquivo corrompido
-      }
-    }
-
-    lista.push(dados); // Adiciona os novos dados recebidos
-
-    fs.writeFile(caminho, JSON.stringify(lista, null, 2), (erro) => {
-      if (erro) {
-        console.error("Erro ao salvar:", erro);
-      } else {
-        console.log(`✅ Dados salvos em ${tipo}.json`);
-      }
-    });
-  });
-});
-
-// Cria a janela quando o app estiver pronto
 app.whenReady().then(createWindow);
 
-// Fecha completamente o app em Windows/Linux
-app.on('window-all-closed', () => {
+// ======================================================
+// 📥 LEITURA DE DADOS DO JSON
+// ======================================================
+
+ipcMain.handle("ler-dados", async function (event, tipo) {
+
+  const caminho = path.join(__dirname, "app-react", "data", `${tipo}.json`);
+
+  try {
+
+    const conteudo = fs.readFileSync(caminho, "utf8");
+    const dados = JSON.parse(conteudo);
+
+    console.log(`📥 Dados lidos de ${tipo}.json`);
+    return dados;
+
+  } catch (erro) {
+
+    console.log(`⚠️ Arquivo ${tipo}.json não encontrado ou vazio`);
+    return [];
+
+  }
+});
+
+// ======================================================
+// 💾 SALVAMENTO DE DADOS NO JSON
+// ======================================================
+
+ipcMain.handle("salvar-dados", async function (event, tipo, dados) {
+
+  const caminho = path.join(__dirname, "app-react", "data", `${tipo}.json`);
+
+  let lista = [];
+
+  try {
+
+    const conteudo = fs.readFileSync(caminho, "utf8");
+    lista = JSON.parse(conteudo);
+
+  } catch (erro) {
+    console.log("Arquivo inexistente, criando novo...");
+  }
+
+  lista.push(dados);
+
+  fs.writeFileSync(caminho, JSON.stringify(lista, null, 2));
+
+  console.log(`✅ Dados salvos em ${tipo}.json`);
+});
+
+app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
     app.quit();
   }
 });
 
-// Reabre a janela no macOS quando o ícone for clicado
-app.on('activate', () => {
+app.on('activate', function () {
   if (mainWindow === null) {
     createWindow();
   }

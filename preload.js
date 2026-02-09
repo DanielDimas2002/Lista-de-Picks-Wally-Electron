@@ -2,5 +2,13 @@
 const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("api", {
-  salvarDados: (tipo, dados) => ipcRenderer.send("salvar-dados", tipo, dados),
+
+  lerDados: function (tipo) {
+    return ipcRenderer.invoke("ler-dados", tipo);
+  },
+
+  salvarDados: function (tipo, dados) {
+    return ipcRenderer.invoke("salvar-dados", tipo, dados);
+  }
+
 });
