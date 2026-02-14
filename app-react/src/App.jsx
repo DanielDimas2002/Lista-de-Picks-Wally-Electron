@@ -8,6 +8,15 @@ import TabelaPick from "./componentes/TabelaPick/TabelaPick";
 import TabelaBanco from "./componentes/TabelaBanco/TabelaBanco";
 
 function App() {
+
+  // ================================
+  // 📦 Estados das tabelas
+  // ================================
+
+  const [listaPicks, setListaPicks] = useState([]);
+  const [listaVidas, setListaVida] = useState([]);
+  const [listaBanco, setListaBanco] = useState([]);
+
   // Funções dos Formulário
 
   const handleCadastrarPick = (nome, vidas) => {
@@ -33,26 +42,47 @@ function App() {
 
   // 🛡️ Reduz 1 vida do campeão selecionado
   function reduzirVida(indice) {
+
     const novaLista = [...listaPicks];
     novaLista[indice].vidas--;
+
     setListaPicks(novaLista);
+
+    window.api.atualizarDados("picks", novaLista);
+
   }
 
   // ⬆️ Move o campeão uma posição acima
   function subirLinha(indice) {
-    if (indice === 0) return;
+
+    if (indice === 0) {
+      return;
+    }
 
     const novaLista = [...listaPicks];
     const item = novaLista[indice];
+
     novaLista.splice(indice, 1);
     novaLista.splice(indice - 1, 0, item);
+
     setListaPicks(novaLista);
+
+    window.api.atualizarDados("picks", novaLista);
+
   }
+
 
   // 🗑️ Remove o campeão da lista
   function excluirPick(indice) {
-    const novaLista = listaPicks.filter((_, i) => i !== indice);
+
+    const novaLista = listaPicks.filter(function (_, i) {
+      return i !== indice;
+    });
+
     setListaPicks(novaLista);
+
+    window.api.atualizarDados("picks", novaLista);
+
   }
 
   // 🛡️ Reduz 1 vida do jogador na TabelaVida

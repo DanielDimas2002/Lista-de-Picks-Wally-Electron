@@ -1,4 +1,5 @@
 // preload.js
+
 const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("api", {
@@ -9,6 +10,11 @@ contextBridge.exposeInMainWorld("api", {
 
   salvarDados: function (tipo, dados) {
     return ipcRenderer.invoke("salvar-dados", tipo, dados);
+  },
+
+  atualizarDados: function (tipo, novaLista) {
+    return ipcRenderer.invoke("atualizar-dados", tipo, novaLista);
   }
 
 });
+

@@ -1,27 +1,23 @@
 [
   {
-    "nome": "Ahri",
-    "vidas": 3
+    "nome": "Bom dia 14",
+    "vidas": 14
   },
   {
-    "nome": "Zed",
+    "nome": "Ahri",
     "vidas": 2
   },
   {
-    "nome": "Daniel",
-    "vidas": 89
+    "nome": "Zed",
+    "vidas": 1
   },
   {
     "nome": "Daniel",
+    "vidas": 88
+  },
+  {
+    "nome": "Daniel",
     "vidas": 89
-  },
-  {
-    "nome": "",
-    "vidas": null
-  },
-  {
-    "nome": "",
-    "vidas": null
   },
   {
     "nome": "wally2",

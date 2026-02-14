@@ -88,3 +88,25 @@ app.on('activate', function () {
     createWindow();
   }
 });
+
+// ======================================================
+// 🔄 ATUALIZAÇÃO COMPLETA DO JSON
+// ======================================================
+
+ipcMain.handle("atualizar-dados", async function (event, tipo, novaLista) {
+
+  const caminho = path.join(__dirname, "app-react", "data", `${tipo}.json`);
+
+  try {
+
+    fs.writeFileSync(caminho, JSON.stringify(novaLista, null, 2));
+
+    console.log(`🔄 ${tipo}.json atualizado com sucesso`);
+
+  } catch (erro) {
+
+    console.log(`❌ Erro ao atualizar ${tipo}.json:`, erro);
+
+  }
+
+});
