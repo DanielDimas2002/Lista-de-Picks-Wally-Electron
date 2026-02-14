@@ -44,13 +44,19 @@ function App() {
   function reduzirVida(indice) {
 
     const novaLista = [...listaPicks];
+
     novaLista[indice].vidas--;
 
-    setListaPicks(novaLista);
+    const listaFiltrada = novaLista.filter(function (pick) {
+      return pick.vidas > 0;
+    });
 
-    window.api.atualizarDados("picks", novaLista);
+    setListaPicks(listaFiltrada);
+
+    window.api.atualizarDados("picks", listaFiltrada);
 
   }
+
 
   // ⬆️ Move o campeão uma posição acima
   function subirLinha(indice) {
