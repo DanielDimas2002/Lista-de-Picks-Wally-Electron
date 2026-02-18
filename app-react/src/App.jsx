@@ -112,11 +112,20 @@ function App() {
   }
 
 
-  // 💰 Edita o Crédito  
+  // 💰 Edita o Crédito e persiste no JSON
   function editarValorBanco(indice, novoValor) {
+
+    // Cria uma cópia da lista atual (imutabilidade)
     const novaLista = [...listaBanco];
+
+    // Atualiza o valor convertido para número
     novaLista[indice].valor = parseInt(novoValor);
+
+    // Atualiza o estado
     setListaBanco(novaLista);
+
+    // 🔄 Persiste a lista completa no JSON
+    window.api.atualizarDados("banco", novaLista);
   }
 
   // 📥 Carrega os dados reais do JSON ao iniciar o aplicativo
