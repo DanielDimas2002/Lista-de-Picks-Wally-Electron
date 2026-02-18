@@ -1,23 +1,15 @@
 [
   {
-    "nome": "Wally",
-    "vidas": 3
-  },
-  {
     "nome": "Daniel",
     "vidas": 2
   },
   {
     "nome": "80",
-    "vidas": 45
-  },
-  {
-    "nome": "",
-    "vidas": null
+    "vidas": 43
   },
   {
     "nome": "teste3",
-    "vidas": 5
+    "vidas": 4
   },
   {
     "nome": "Bom dia3",
@@ -30,5 +22,9 @@
   {
     "nome": "Bom dia 14",
     "vidas": 14
+  },
+  {
+    "nome": "goooooooooo",
+    "vidas": 5
   }
 ]

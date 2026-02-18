@@ -57,7 +57,6 @@ function App() {
 
   }
 
-
   // ⬆️ Move o campeão uma posição acima
   function subirLinha(indice) {
 
@@ -91,12 +90,27 @@ function App() {
 
   }
 
-  // 🛡️ Reduz 1 vida do jogador na TabelaVida
+  // 🛡️ Reduz 1 vida do jogador na TabelaVida e persiste no JSON
   function reduzirVidaJogador(indice) {
+
+    // Cria uma cópia da lista atual (imutabilidade)
     const novaLista = [...listaVidas];
+
+    // Reduz a vida do jogador selecionado
     novaLista[indice].vidas--;
-    setListaVida(novaLista);
+
+    // Remove jogadores com 0 vidas (opcional, mas mantém padrão dos picks)
+    const listaFiltrada = novaLista.filter(function (jogador) {
+      return jogador.vidas > 0;
+    });
+
+    // Atualiza o estado
+    setListaVida(listaFiltrada);
+
+    // 🔄 Atualiza o JSON com a nova lista completa
+    window.api.atualizarDados("vidas", listaFiltrada);
   }
+
 
   // 💰 Edita o Crédito  
   function editarValorBanco(indice, novoValor) {
