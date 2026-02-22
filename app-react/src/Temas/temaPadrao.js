@@ -1,3 +1,20 @@
+// temaPadrao.js
+// ------------------------------------------------------------
+// Este arquivo define o tema visual padrão do sistema.
+// Ele centraliza todas as cores utilizadas na aplicação,
+// permitindo:
+//
+// ✔ reutilização em qualquer componente
+// ✔ fácil restauração do tema original
+// ✔ futura integração com React Context
+// ✔ persistência em JSON posteriormente
+//
+// Importante:
+// - Todos os nomes estão em português
+// - Estrutura clara para facilitar manutenção
+// - Organização pensada para crescimento do sistema
+// ------------------------------------------------------------
+
 const temaPadrao = {
     
     // --------------------------------------------------------
