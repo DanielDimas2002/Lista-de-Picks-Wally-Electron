@@ -1,8 +1,12 @@
 // src/componentes/Aside/Aside.jsx
 import React, { useState, useRef } from "react";
 import styles from "./Aside.module.css";
+import { useTema } from "../../contexto/TemaContext";
 
 function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco }) {
+
+  const { temaAtual } = useTema();
+
   // 🎯 Estados dos inputs
   const [nomePick, setNomePick] = useState("");
   const [vidasPick, setVidasPick] = useState("");
@@ -41,19 +45,34 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
   }
 
   return (
-    <aside className={styles.aside}>
+    <aside className={styles.aside}
+      style={{
+        backgroundColor: temaAtual.fundoAside,
+        color: temaAtual.corTextoPrincipal,
+        borderLeft: `1px solid ${temaAtual.bordaAside}`
+      }}>
       <h3>📋 Cadastro de Picks</h3>
       <input
         type="text"
         placeholder="Nome do Campeão"
         value={nomePick}
         onChange={(e) => setNomePick(e.target.value)}
+        style={{
+          backgroundColor: temaAtual.fundoInput,
+          color: temaAtual.corTextoPrincipal,
+          border: `1px solid ${temaAtual.bordaInput}`
+        }}
       />
       <input
         type="number"
         placeholder="Vidas"
         value={vidasPick}
         onChange={(e) => setVidasPick(e.target.value)}
+        style={{
+          backgroundColor: temaAtual.fundoInput,
+          color: temaAtual.corTextoPrincipal,
+          border: `1px solid ${temaAtual.bordaInput}`
+        }}
       />
       <button
         className={`${styles.botao} ${corPick ? styles[corPick] : ""}`}
@@ -81,12 +100,22 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
         placeholder="Nome do Jogador"
         value={nomeVida}
         onChange={(e) => setNomeVida(e.target.value)}
+        style={{
+          backgroundColor: temaAtual.fundoInput,
+          color: temaAtual.corTextoPrincipal,
+          border: `1px solid ${temaAtual.bordaInput}`
+        }}
       />
       <input
         type="number"
         placeholder="Vidas"
         value={vidasVida}
         onChange={(e) => setVidasVida(e.target.value)}
+        style={{
+          backgroundColor: temaAtual.fundoInput,
+          color: temaAtual.corTextoPrincipal,
+          border: `1px solid ${temaAtual.bordaInput}`
+        }}
       />
       <button
         className={`${styles.botao} ${corVida ? styles[corVida] : ""}`}
@@ -114,12 +143,22 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
         placeholder="Nome do Jogador"
         value={nomeBanco}
         onChange={(e) => setNomeBanco(e.target.value)}
+        style={{
+          backgroundColor: temaAtual.fundoInput,
+          color: temaAtual.corTextoPrincipal,
+          border: `1px solid ${temaAtual.bordaInput}`
+        }}
       />
       <input
         type="number"
         placeholder="Valor"
         value={valorBanco}
         onChange={(e) => setValorBanco(e.target.value)}
+        style={{
+          backgroundColor: temaAtual.fundoInput,
+          color: temaAtual.corTextoPrincipal,
+          border: `1px solid ${temaAtual.bordaInput}`
+        }}
       />
       <button
         className={`${styles.botao} ${corBanco ? styles[corBanco] : ""}`}

@@ -1,5 +1,9 @@
 [
   {
+    "nome": "oi",
+    "vidas": 56
+  },
+  {
     "nome": "Bom dia 14",
     "vidas": 14
   },
@@ -22,9 +26,5 @@
   {
     "nome": "Bom dia",
     "vidas": 5
-  },
-  {
-    "nome": "oi",
-    "vidas": 56
   }
 ]

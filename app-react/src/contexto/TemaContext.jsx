@@ -86,9 +86,9 @@ function TemaProvider({ children }) {
     // Tudo que a aplicação poderá acessar do tema.
     // --------------------------------------------------------
     const valorContexto = {
-        temaAtual: temaAtual,
-        atualizarTema: atualizarTema,
-        restaurarTemaPadrao: restaurarTemaPadrao
+        temaAtual,
+        atualizarTema,
+        restaurarTemaPadrao
     };
 
 

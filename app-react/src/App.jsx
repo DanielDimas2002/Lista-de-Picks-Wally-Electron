@@ -6,6 +6,7 @@ import Aside from "./componentes/Aside/Aside";
 import TabelaVida from "./componentes/TabelaVida/TabelaVida";
 import TabelaPick from "./componentes/TabelaPick/TabelaPick";
 import TabelaBanco from "./componentes/TabelaBanco/TabelaBanco";
+import { TemaProvider, useTema } from "./contexto/TemaContext";
 
 function App() {
 
@@ -154,36 +155,57 @@ function App() {
     carregarDados();
   }, []);
 
-  return (
-    <div style={{ display: "flex" }}>
-      <div style={{ flex: 1, paddingTop: "60px" }}>
-        <Menu />
-        <Routes>
-          <Route path="/picks" element={
-            <TabelaPick
-              listaPicks={listaPicks}
-              aoReduzirVida={reduzirVida}
-              aoSubir={subirLinha}
-              aoExcluir={excluirPick}
-            />} />
-          <Route path="/vidas" element={
-            <TabelaVida
-              vidas={listaVidas}
-              aoReduzirVida={reduzirVidaJogador}
-            />} />
-          <Route path="/banco" element={
-            <TabelaBanco
-              banco={listaBanco}
-              aoEditarValor={editarValorBanco}
-            />} />
-        </Routes>
+  function LayoutAplicacao({ children }) {
+
+    const { temaAtual } = useTema();
+
+    return (
+      <div
+        style={{
+          display: "flex",
+          backgroundColor: temaAtual.fundoAplicacao,
+          color: temaAtual.corTextoPrincipal,
+          minHeight: "100vh"
+        }}
+      >
+        {children}
       </div>
-      <Aside
-        handleCadastrarPick={handleCadastrarPick}
-        handleCadastrarVida={handleCadastrarVida}
-        handleCadastrarBanco={handleCadastrarBanco}
-      />
-    </div>
+    );
+  }
+
+  return (
+    <TemaProvider>
+      <LayoutAplicacao>
+        <div style={{ flex: 1, paddingTop: "60px" }}>
+          <Menu />
+          <Routes>
+            <Route path="/picks" element={
+              <TabelaPick
+                listaPicks={listaPicks}
+                aoReduzirVida={reduzirVida}
+                aoSubir={subirLinha}
+                aoExcluir={excluirPick}
+              />} />
+            <Route path="/vidas" element={
+              <TabelaVida
+                vidas={listaVidas}
+                aoReduzirVida={reduzirVidaJogador}
+              />} />
+            <Route path="/banco" element={
+              <TabelaBanco
+                banco={listaBanco}
+                aoEditarValor={editarValorBanco}
+              />} />
+          </Routes>
+        </div>
+
+        <Aside
+          handleCadastrarPick={handleCadastrarPick}
+          handleCadastrarVida={handleCadastrarVida}
+          handleCadastrarBanco={handleCadastrarBanco}
+        />
+      </LayoutAplicacao>
+    </TemaProvider>
   );
 }
 
