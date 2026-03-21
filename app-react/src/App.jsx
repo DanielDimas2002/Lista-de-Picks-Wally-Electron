@@ -7,7 +7,7 @@ import TabelaVida from "./componentes/TabelaVida/TabelaVida";
 import TabelaPick from "./componentes/TabelaPick/TabelaPick";
 import TabelaBanco from "./componentes/TabelaBanco/TabelaBanco";
 import { TemaProvider, useTema } from "./contexto/TemaContext";
-
+import TelaConfiguracoes from "./componentes/TelaConfiguracoes/TelaConfiguracoes";
 function App() {
 
   // ================================
@@ -196,6 +196,7 @@ function App() {
                 banco={listaBanco}
                 aoEditarValor={editarValorBanco}
               />} />
+              <Route path="/configuracoes" element={<TelaConfiguracoes />} />
           </Routes>
         </div>
 

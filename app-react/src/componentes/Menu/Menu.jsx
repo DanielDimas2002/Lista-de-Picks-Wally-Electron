@@ -43,6 +43,13 @@ function Menu() {
                 >
                     💰 Banco
                 </Link>
+                <Link
+                    to="/configuracoes"
+                    className={styles.link}
+                    style={{ color: temaAtual.corTextoPrincipal }}
+                >
+                    ⚙️ Configurações
+                </Link>
             </nav>
         </header>
     );
