@@ -83,17 +83,6 @@ function TelaConfiguracoes() {
                         alterarCor(campo.chave, e.target.value);
                       }}
                     />
-
-                    {/* Preview da cor */}
-                    <div
-                      style={{
-                        width: "40px",
-                        height: "20px",
-                        backgroundColor: temaAtual[campo.chave],
-                        border: "1px solid #ccc"
-                      }}
-                    />
-
                   </div>
 
                 </div>
