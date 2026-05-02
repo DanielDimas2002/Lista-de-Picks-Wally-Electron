@@ -4,7 +4,7 @@ import LinhaPick from "./LinhaPick";
 
 function TabelaPick({ listaPicks, aoReduzirVida, aoSubir, aoExcluir }) {
     return (
-        <section>
+        <section className="tabela-container">
             <h1>📋 Tabela Pick</h1>
             <table>
                 <thead>

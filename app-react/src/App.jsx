@@ -162,10 +162,8 @@ function App() {
     return (
       <div
         style={{
-          display: "flex",
           backgroundColor: temaAtual.fundoAplicacao,
           color: temaAtual.corTextoPrincipal,
-          minHeight: "100vh"
         }}
       >
         {children}
@@ -176,7 +174,7 @@ function App() {
   return (
     <TemaProvider>
       <LayoutAplicacao>
-        <div style={{ flex: 1, padding: "60px 20px 20px 20px" }}>
+        <div className="conteudo-principal">
           <Menu />
           <Routes>
             <Route path="/picks" element={

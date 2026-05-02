@@ -4,7 +4,7 @@ import LinhaVida from "./LinhaVida";
 
 function TabelaVida({ vidas, aoReduzirVida }) {
   return (
-    <section>
+    <section className="tabela-container">
       <h1>❤️ Tabela Vida</h1>
       <table>
         <thead>

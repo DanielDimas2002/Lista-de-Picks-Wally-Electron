@@ -4,7 +4,7 @@ import LinhaBanco from "./LinhaBanco";
 
 function TabelaBanco({ banco, aoEditarValor }) {
   return (
-    <section>
+    <section className="tabela-container">
       <h1>💰 Tabela Banco</h1>
       <table>
         <thead>

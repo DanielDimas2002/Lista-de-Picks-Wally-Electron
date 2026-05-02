@@ -37,47 +37,55 @@
   }
 }
 
-/* ========================= TABELAS GLOBAIS ========================= */
+/* ========================= LAYOUT PRINCIPAL ========================= */
 
-table {
+.layout-aplicacao {
+  display: flex;
+  min-height: 100vh;
+}
+
+.conteudo-principal {
+  flex: 1;
+  padding: 60px 20px 20px 20px;
+}
+
+/* ========================= TABELAS (ESCOPO CONTROLADO) ========================= */
+
+.tabela-container table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
   background-color: var(--fundoTabela);
 }
 
-th, td {
-  padding: 8px 6px;
+.tabela-container th,
+.tabela-container td {
+  padding: 8px 6px; /* 👈 mais compacto */
   text-align: left;
 }
 
-/* Cabeçalho */
-thead {
+.tabela-container thead {
   background-color: var(--fundoSecundario);
 }
 
-th {
+.tabela-container th {
   font-weight: bold;
   color: var(--corTextoPrincipal);
   border-bottom: 2px solid var(--bordaTabela);
 }
 
-/* Linhas */
-tbody tr {
+.tabela-container tbody tr {
   border-bottom: 1px solid var(--bordaTabela);
 }
 
-/* Zebra */
-tbody tr:nth-child(even) {
+.tabela-container tbody tr:nth-child(even) {
   background-color: rgba(255, 255, 255, 0.02);
 }
 
-/* Hover */
-tbody tr:hover {
+.tabela-container tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-/* Última linha sem borda */
-tbody tr:last-child {
+.tabela-container tbody tr:last-child {
   border-bottom: none;
 }
