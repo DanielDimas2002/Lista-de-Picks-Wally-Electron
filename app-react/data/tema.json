@@ -1,28 +1,24 @@
 {
   "planoFundo": {
-    "corFundoGeral": "#f0f2f5",
-    "corFundoMenu": "#1f1f1f",
-    "corFundoTabela": "#ffffff",
-    "corFundoLinha": "#f9f9f9",
-    "corFundoAside": "#e8eaed"
+    "corFundoGeral": "#0f172a",
+    "corFundoMenu": "#1e293b",
+    "corFundoTabela": "#020617",
+    "corFundoAside": "#020617",
+    "corFundoLinha": "#020617"
   },
   "textos": {
-    "corTextoPrincipal": "#1a1a1a",
-    "corTextoMenu": "#f5f5f5",
-    "corTextoTabela": "#333333",
-    "corTextoFormulario": "#2c2c2c"
-  },
-  "bordas": {
-    "corBordaTabela": "#cccccc",
-    "corBordaInputs": "#aaaaaa"
+    "corTextoPrincipal": "#e2e8f0",
+    "corTextoTabela": "#94a3b8"
   },
   "botoes": {
-    "corBotaoPrincipal": "#4caf50",
-    "corTextoBotao": "#ffffff",
-    "corBotaoHover": "#43a047"
+    "corBotaoPrincipal": "#22c55e",
+    "corBotaoHover": "#16a34a"
+  },
+  "bordas": {
+    "corBordaTabela": "#334155",
+    "corBordaInputs": "#475569"
   },
   "destaques": {
-    "corHoverLinha": "#e0f7fa",
-    "corDestaque": "#ff1744"
+    "corDestaque": "#ef4444"
   }
 }

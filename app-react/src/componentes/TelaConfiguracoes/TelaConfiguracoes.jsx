@@ -15,49 +15,99 @@ function TelaConfiguracoes() {
     atualizarTema(novoTema);
   }
 
+  // --------------------------------------------------------
+  // CONFIGURAÇÃO DINÂMICA DO FORMULÁRIO
+  // --------------------------------------------------------
+  const configuracoesTema = [
+    {
+      titulo: "Plano de Fundo",
+      campos: [
+        { label: "Fundo da Aplicação", chave: "fundoAplicacao" },
+        { label: "Fundo Secundário", chave: "fundoSecundario" }
+      ]
+    },
+    {
+      titulo: "Textos",
+      campos: [
+        { label: "Texto Principal", chave: "corTextoPrincipal" },
+        { label: "Texto Secundário", chave: "corTextoSecundario" }
+      ]
+    },
+    {
+      titulo: "Botões",
+      campos: [
+        { label: "Cor Primária", chave: "corPrimaria" },
+        { label: "Hover Primário", chave: "corPrimariaHover" }
+      ]
+    },
+    {
+      titulo: "Componentes",
+      campos: [
+        { label: "Fundo Tabela", chave: "fundoTabela" },
+        { label: "Borda Tabela", chave: "bordaTabela" },
+        { label: "Fundo Aside", chave: "fundoAside" },
+        { label: "Fundo Input", chave: "fundoInput" }
+      ]
+    }
+  ];
+
   return (
     <div style={{ padding: "30px" }}>
 
       <h2>⚙️ Configurações de Tema</h2>
-
       <p>Personalize as cores da aplicação.</p>
 
-      <div style={{ marginTop: "20px" }}>
+      {/* ---------------------------------------------------- */}
+      {/* RENDERIZAÇÃO DINÂMICA */}
+      {/* ---------------------------------------------------- */}
+      {configuracoesTema.map(function (grupo) {
 
-        <label>Fundo da Aplicação</label>
+        return (
+          <div key={grupo.titulo} style={{ marginTop: "30px" }}>
 
-        <input
-          type="color"
-          value={temaAtual.fundoAplicacao}
-          onChange={(e) => alterarCor("fundoAplicacao", e.target.value)}
-        />
+            <h3>{grupo.titulo}</h3>
 
-      </div>
+            {grupo.campos.map(function (campo) {
 
-      <div style={{ marginTop: "20px" }}>
+              return (
+                <div key={campo.chave} style={{ marginTop: "15px" }}>
 
-        <label>Cor do Texto</label>
+                  <label>{campo.label}</label>
 
-        <input
-          type="color"
-          value={temaAtual.corTextoPrincipal}
-          onChange={(e) => alterarCor("corTextoPrincipal", e.target.value)}
-        />
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
 
-      </div>
+                    <input
+                      type="color"
+                      value={temaAtual[campo.chave]}
+                      onChange={function (e) {
+                        alterarCor(campo.chave, e.target.value);
+                      }}
+                    />
 
-      <div style={{ marginTop: "20px" }}>
+                    {/* Preview da cor */}
+                    <div
+                      style={{
+                        width: "40px",
+                        height: "20px",
+                        backgroundColor: temaAtual[campo.chave],
+                        border: "1px solid #ccc"
+                      }}
+                    />
 
-        <label>Cor Primária</label>
+                  </div>
 
-        <input
-          type="color"
-          value={temaAtual.corPrimaria}
-          onChange={(e) => alterarCor("corPrimaria", e.target.value)}
-        />
+                </div>
+              );
+            })}
 
-      </div>
+          </div>
+        );
 
+      })}
+
+      {/* ---------------------------------------------------- */}
+      {/* BOTÃO RESTAURAR */}
+      {/* ---------------------------------------------------- */}
       <div style={{ marginTop: "30px" }}>
 
         <button onClick={restaurarTemaPadrao}>

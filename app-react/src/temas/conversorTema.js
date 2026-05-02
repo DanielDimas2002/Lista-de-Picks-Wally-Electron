@@ -1,8 +1,6 @@
-// conversorTema.js
 // ------------------------------------------------------------
-// Converte o formato do JSON para o formato interno do React
+// JSON → React
 // ------------------------------------------------------------
-
 function converterJsonParaTema(json) {
 
     return {
@@ -34,4 +32,49 @@ function converterJsonParaTema(json) {
     };
 }
 
-export { converterJsonParaTema };
+
+// ------------------------------------------------------------
+// React → JSON
+// ------------------------------------------------------------
+function converterTemaParaJson(tema) {
+
+    return {
+
+        planoFundo: {
+            corFundoGeral: tema.fundoAplicacao,
+            corFundoMenu: tema.fundoSecundario,
+            corFundoTabela: tema.fundoTabela,
+            corFundoAside: tema.fundoAside,
+            corFundoLinha: tema.fundoInput
+        },
+
+        textos: {
+            corTextoPrincipal: tema.corTextoPrincipal,
+            corTextoTabela: tema.corTextoSecundario
+        },
+
+        botoes: {
+            corBotaoPrincipal: tema.corPrimaria,
+            corBotaoHover: tema.corPrimariaHover
+        },
+
+        bordas: {
+            corBordaTabela: tema.bordaTabela,
+            corBordaInputs: tema.bordaInput
+        },
+
+        destaques: {
+            corDestaque: tema.corPerigo
+        }
+
+    };
+}
+
+
+// ------------------------------------------------------------
+// EXPORTAÇÃO
+// ------------------------------------------------------------
+export {
+    converterJsonParaTema,
+    converterTemaParaJson
+};
