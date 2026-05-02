@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 .App-logo {
@@ -35,4 +35,49 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* ========================= TABELAS GLOBAIS ========================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: var(--fundoTabela);
+}
+
+th, td {
+  padding: 8px 6px;
+  text-align: left;
+}
+
+/* Cabeçalho */
+thead {
+  background-color: var(--fundoSecundario);
+}
+
+th {
+  font-weight: bold;
+  color: var(--corTextoPrincipal);
+  border-bottom: 2px solid var(--bordaTabela);
+}
+
+/* Linhas */
+tbody tr {
+  border-bottom: 1px solid var(--bordaTabela);
+}
+
+/* Zebra */
+tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* Hover */
+tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Última linha sem borda */
+tbody tr:last-child {
+  border-bottom: none;
 }

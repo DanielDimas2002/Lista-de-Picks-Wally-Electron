@@ -1,10 +1,10 @@
 import React from "react";
 import LinhaBanco from "./LinhaBanco";
-import styles from "./TabelaBanco.module.css";
+
 
 function TabelaBanco({ banco, aoEditarValor }) {
   return (
-    <section className={styles.container}>
+    <section>
       <h1>💰 Tabela Banco</h1>
       <table>
         <thead>

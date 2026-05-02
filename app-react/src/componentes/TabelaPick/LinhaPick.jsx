@@ -1,12 +1,12 @@
 import React from "react";
-import styles from "./LinhaPick.module.css"
+
 
 function LinhaPick({indice, nome, vidas, aoReduzirVida, aoSubir, aoExcluir}){
     return(
-        <tr className={styles.linha}> 
+        <tr> 
             <td>{nome}</td>
             <td>{vidas}</td>
-            <td className={styles.acoes}>
+            <td>
                 <button
                 title="Reduzir 1 vida"
                 onClick={() => aoReduzirVida(indice)}

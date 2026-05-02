@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./LinhaBanco.module.css";
+
 
 function LinhaBanco({ indice, nome, valor, aoEditarValor }) {
   const [editando, setEditando] = useState(false);
@@ -24,9 +24,9 @@ function LinhaBanco({ indice, nome, valor, aoEditarValor }) {
   }
 
   return (
-    <tr className={styles.linha}>
+    <tr>
       <td>{nome}</td>
-      <td onClick={ativarEdicao} className={styles.valor}>
+      <td onClick={ativarEdicao}>
         {editando ? (
           <input
             type="number"

@@ -1,10 +1,10 @@
 import React from "react";
 import LinhaPick from "./LinhaPick";
-import styles from "./TabelaPick.module.css"
+
 
 function TabelaPick({ listaPicks, aoReduzirVida, aoSubir, aoExcluir }) {
     return (
-        <section className={styles.container}>
+        <section>
             <h1>📋 Tabela Pick</h1>
             <table>
                 <thead>

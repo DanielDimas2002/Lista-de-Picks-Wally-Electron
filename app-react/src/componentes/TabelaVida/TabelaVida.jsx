@@ -1,10 +1,10 @@
 import React from "react";
 import LinhaVida from "./LinhaVida";
-import styles from "./TabelaVida.module.css";
+
 
 function TabelaVida({ vidas, aoReduzirVida }) {
   return (
-    <section className={styles.container}>
+    <section>
       <h1>❤️ Tabela Vida</h1>
       <table>
         <thead>

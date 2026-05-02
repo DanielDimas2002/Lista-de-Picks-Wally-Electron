@@ -176,7 +176,7 @@ function App() {
   return (
     <TemaProvider>
       <LayoutAplicacao>
-        <div style={{ flex: 1, paddingTop: "60px" }}>
+        <div style={{ flex: 1, padding: "60px 20px 20px 20px" }}>
           <Menu />
           <Routes>
             <Route path="/picks" element={

@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "./LinhaVida.module.css";
+
 
 function LinhaVida({ indice, nome, vidas, aoReduzirVida }) {
   return (
-    <tr className={styles.linha}>
+    <tr>
       <td>{nome}</td>
       <td>{vidas}</td>
       <td>
