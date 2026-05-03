@@ -52,17 +52,14 @@
 /* ========================= TABELAS (ESCOPO CONTROLADO) ========================= */
 
 .tabela-container table {
-  table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
   background-color: var(--fundoTabela);
 }
 
-.tabela-container th,
-.tabela-container td {
-  padding: 8px 6px; /* 👈 mais compacto */
-  text-align: left;
+.tabela-container {
+  font-size: clamp(14px, 1.2vw, 18px);
 }
 
 .tabela-container thead {
@@ -91,22 +88,27 @@
   border-bottom: none;
 }
 
+.tabela-container h1 {
+  font-size: clamp(20px, 2vw, 28px);
+}
+
 .tabela-container th:nth-child(1),
 .tabela-container td:nth-child(1) {
-  width: 10%;
+   min-width: 120px;
 }
 
 .tabela-container th:nth-child(2),
 .tabela-container td:nth-child(2) {
-  width: 80px;
+  white-space: nowrap;
 }
 
 .tabela-container th:nth-child(3),
 .tabela-container td:nth-child(3) {
-  width: 120px;
+  white-space: nowrap;
 }
 
-.tabela-container td,
-.tabela-container th {
+.tabela-container th,
+.tabela-container td {
   padding: 6px 4px;
+  text-align: left;
 }
