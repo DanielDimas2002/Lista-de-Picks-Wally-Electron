@@ -1,23 +1,25 @@
 import React from "react";
 
 
-function LinhaVida({ 
-  indice, 
-  nome, 
-  vidas, 
+function LinhaVida({
+  indice,
+  nome,
+  vidas,
   ativo,
   aoReduzirVida,
   aoAdicionarVida,
   aoExcluir
 }) {
   return (
-    <tr style={{ opacity: ativo ? 1 : 0.4 }}>
-      <td>{nome}</td>
-      <td>{vidas}</td>
+    <tr>
+      <td className={!ativo ? "inativo" : ""}>{nome}</td>
+      <td className={!ativo ? "inativo" : ""}>{vidas}</td>
+
       <td>
         <button
           title="Reduzir 1 vida"
           onClick={() => aoReduzirVida(indice)}
+          disabled={!ativo} // opcional (recomendado)
         >
           💔
         </button>
