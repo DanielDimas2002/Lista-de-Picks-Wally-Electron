@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Menu from './componentes/Menu/Menu';
 import Aside from "./componentes/Aside/Aside";
 import TabelaVida from "./componentes/TabelaVida/TabelaVida";
@@ -177,6 +177,10 @@ function App() {
         <div className="conteudo-principal">
           <Menu />
           <Routes>
+
+            {/* 🔥 ROTA INICIAL */}
+            <Route path="/" element={<Navigate to="/picks" />} />
+
             <Route path="/picks" element={
               <TabelaPick
                 listaPicks={listaPicks}
@@ -184,17 +188,21 @@ function App() {
                 aoSubir={subirLinha}
                 aoExcluir={excluirPick}
               />} />
+
             <Route path="/vidas" element={
               <TabelaVida
                 vidas={listaVidas}
                 aoReduzirVida={reduzirVidaJogador}
               />} />
+
             <Route path="/banco" element={
               <TabelaBanco
                 banco={listaBanco}
                 aoEditarValor={editarValorBanco}
               />} />
-              <Route path="/configuracoes" element={<TelaConfiguracoes />} />
+
+            <Route path="/configuracoes" element={<TelaConfiguracoes />} />
+
           </Routes>
         </div>
 
