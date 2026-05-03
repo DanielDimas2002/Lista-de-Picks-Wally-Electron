@@ -52,6 +52,7 @@
 /* ========================= TABELAS (ESCOPO CONTROLADO) ========================= */
 
 .tabela-container table {
+  table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
@@ -88,4 +89,24 @@
 
 .tabela-container tbody tr:last-child {
   border-bottom: none;
+}
+
+.tabela-container th:nth-child(1),
+.tabela-container td:nth-child(1) {
+  width: 10%;
+}
+
+.tabela-container th:nth-child(2),
+.tabela-container td:nth-child(2) {
+  width: 80px;
+}
+
+.tabela-container th:nth-child(3),
+.tabela-container td:nth-child(3) {
+  width: 120px;
+}
+
+.tabela-container td,
+.tabela-container th {
+  padding: 6px 4px;
 }

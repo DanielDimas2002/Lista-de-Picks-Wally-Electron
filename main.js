@@ -18,7 +18,26 @@ function createWindow() {
   });
 
   mainWindow.loadFile(path.join(__dirname, 'app-react', 'build', 'index.html'));
-  //mainWindow.webContents.openDevTools();
+
+  // ✅ Atalho tipo navegador (F12 e Ctrl+Shift+I)
+  mainWindow.webContents.on('before-input-event', (event, input) => {
+
+    // F12
+    if (input.key === 'F12' && input.type === 'keyDown') {
+      mainWindow.webContents.toggleDevTools();
+    }
+
+    // Ctrl + Shift + I
+    if (
+      input.control &&
+      input.shift &&
+      input.key.toLowerCase() === 'i' &&
+      input.type === 'keyDown'
+    ) {
+      mainWindow.webContents.toggleDevTools();
+    }
+
+  });
 
   mainWindow.on('close', function () {
     mainWindow = null;
