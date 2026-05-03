@@ -8,6 +8,7 @@ import TabelaPick from "./componentes/TabelaPick/TabelaPick";
 import TabelaBanco from "./componentes/TabelaBanco/TabelaBanco";
 import { TemaProvider, useTema } from "./contexto/TemaContext";
 import TelaConfiguracoes from "./componentes/TelaConfiguracoes/TelaConfiguracoes";
+
 function App() {
 
   // ================================
@@ -28,7 +29,11 @@ function App() {
   };
 
   const handleCadastrarVida = (nome, vidas) => {
-    const novaVida = { nome, vidas: parseInt(vidas) };
+    const novaVida = {
+      nome,
+      vidas: parseInt(vidas),
+      ativo: true
+    };
     console.log("✅ Recebido no App:", novaVida);
     setListaVida([...listaVidas, novaVida]);
     window.api.salvarDados("vidas", novaVida); // Salvando no JSON
@@ -77,7 +82,6 @@ function App() {
 
   }
 
-
   // 🗑️ Remove o campeão da lista
   function excluirPick(indice) {
 
@@ -91,25 +95,50 @@ function App() {
 
   }
 
-  // 🛡️ Reduz 1 vida do jogador na TabelaVida e persiste no JSON
   function reduzirVidaJogador(indice) {
 
-    // Cria uma cópia da lista atual (imutabilidade)
     const novaLista = [...listaVidas];
 
-    // Reduz a vida do jogador selecionado
     novaLista[indice].vidas--;
 
-    // Remove jogadores com 0 vidas (opcional, mas mantém padrão dos picks)
-    const listaFiltrada = novaLista.filter(function (jogador) {
-      return jogador.vidas > 0;
+    // Se zerar
+    if (novaLista[indice].vidas <= 0) {
+      novaLista[indice].vidas = 0;
+      novaLista[indice].ativo = false;
+
+      // Move para o final
+      const jogador = novaLista[indice];
+      novaLista.splice(indice, 1);
+      novaLista.push(jogador);
+    }
+
+    setListaVida(novaLista);
+    window.api.atualizarDados("vidas", novaLista);
+  }
+
+  function adicionarVidaJogador(indice) {
+
+    const novaLista = [...listaVidas];
+
+    novaLista[indice].vidas++;
+
+    // Se estava desativado → reativa
+    if (!novaLista[indice].ativo) {
+      novaLista[indice].ativo = true;
+    }
+
+    setListaVida(novaLista);
+    window.api.atualizarDados("vidas", novaLista);
+  }
+
+  function excluirJogador(indice) {
+
+    const novaLista = listaVidas.filter(function (_, i) {
+      return i !== indice;
     });
 
-    // Atualiza o estado
-    setListaVida(listaFiltrada);
-
-    // 🔄 Atualiza o JSON com a nova lista completa
-    window.api.atualizarDados("vidas", listaFiltrada);
+    setListaVida(novaLista);
+    window.api.atualizarDados("vidas", novaLista);
   }
 
 
@@ -193,7 +222,10 @@ function App() {
               <TabelaVida
                 vidas={listaVidas}
                 aoReduzirVida={reduzirVidaJogador}
-              />} />
+                aoAdicionarVida={adicionarVidaJogador}
+                aoExcluir={excluirJogador}
+              />
+            } />
 
             <Route path="/banco" element={
               <TabelaBanco

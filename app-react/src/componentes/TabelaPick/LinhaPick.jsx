@@ -11,13 +11,13 @@ function LinhaPick({indice, nome, vidas, aoReduzirVida, aoSubir, aoExcluir}){
                 title="Reduzir 1 vida"
                 onClick={() => aoReduzirVida(indice)}
                 >
-                    🛡️
+                    💔
                 </button>
                 <button 
                 title="Mover para cima"
                 onClick={() => aoSubir(indice)} disabled = {indice === 0}
                 >
-                    ⬆️
+                    🔼
                 </button>
 
                 <button 

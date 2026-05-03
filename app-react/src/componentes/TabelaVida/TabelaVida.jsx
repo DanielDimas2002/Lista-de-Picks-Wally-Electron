@@ -1,8 +1,7 @@
 import React from "react";
 import LinhaVida from "./LinhaVida";
 
-
-function TabelaVida({ vidas, aoReduzirVida }) {
+function TabelaVida({ vidas, aoReduzirVida, aoAdicionarVida, aoExcluir }) {
   return (
     <section className="tabela-container">
       <h1>❤️ Tabela Vida</h1>
@@ -21,7 +20,10 @@ function TabelaVida({ vidas, aoReduzirVida }) {
               indice={indice}
               nome={jogador.nome}
               vidas={jogador.vidas}
+              ativo={jogador.ativo}
               aoReduzirVida={aoReduzirVida}
+              aoAdicionarVida={aoAdicionarVida}
+              aoExcluir={aoExcluir}
             />
           ))}
         </tbody>
