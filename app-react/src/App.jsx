@@ -193,6 +193,7 @@ function App() {
         style={{
           backgroundColor: temaAtual.fundoAplicacao,
           color: temaAtual.corTextoPrincipal,
+          minHeight: "100vh"
         }}
       >
         {children}

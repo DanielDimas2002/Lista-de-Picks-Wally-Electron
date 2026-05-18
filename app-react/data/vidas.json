@@ -1,12 +1,7 @@
 [
   {
     "nome": "80",
-    "vidas": 47,
-    "ativo": true
-  },
-  {
-    "nome": "goooooooooo",
-    "vidas": 6,
+    "vidas": 40,
     "ativo": true
   },
   {
@@ -30,7 +25,12 @@
     "ativo": false
   },
   {
-    "nome": "Bom dia 14",
+    "nome": "e",
+    "vidas": 3,
+    "ativo": true
+  },
+  {
+    "nome": "goooooooooo",
     "vidas": 0,
     "ativo": false
   }
