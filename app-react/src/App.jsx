@@ -158,6 +158,20 @@ function App() {
     window.api.atualizarDados("banco", novaLista);
   }
 
+
+  // 💰 Excluir o Linha e persiste no JSON
+
+  function excluirCredito(indice) {
+
+  const novaLista = listaBanco.filter(function (_, i) {
+    return i !== indice;
+  });
+
+  setListaBanco(novaLista);
+
+  window.api.atualizarDados("banco", novaLista);
+}
+
   // 📥 Carrega os dados reais do JSON ao iniciar o aplicativo
   useEffect(function () {
     async function carregarDados() {
@@ -232,6 +246,7 @@ function App() {
               <TabelaBanco
                 banco={listaBanco}
                 aoEditarValor={editarValorBanco}
+                aoExcluir={excluirCredito}
               />} />
 
             <Route path="/configuracoes" element={<TelaConfiguracoes />} />

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
+function LinhaBanco({ indice, nome, valor, aoEditarValor, aoExcluir }) {
 
-function LinhaBanco({ indice, nome, valor, aoEditarValor }) {
   const [editando, setEditando] = useState(false);
   const [novoValor, setNovoValor] = useState(valor);
 
@@ -10,14 +10,18 @@ function LinhaBanco({ indice, nome, valor, aoEditarValor }) {
   }
 
   function confirmarEdicao() {
+
     const valorConvertido = parseInt(novoValor);
+
     if (!isNaN(valorConvertido)) {
       aoEditarValor(indice, valorConvertido);
     }
+
     setEditando(false);
   }
 
   function lidarComTecla(e) {
+
     if (e.key === "Enter") {
       confirmarEdicao();
     }
@@ -25,7 +29,9 @@ function LinhaBanco({ indice, nome, valor, aoEditarValor }) {
 
   return (
     <tr>
+
       <td>{nome}</td>
+
       <td onClick={ativarEdicao}>
         {editando ? (
           <input
@@ -37,9 +43,22 @@ function LinhaBanco({ indice, nome, valor, aoEditarValor }) {
             onKeyDown={lidarComTecla}
           />
         ) : (
-          <span title="Clique para editar">{valor}</span>
+          <span title="Clique para editar">
+            {valor}
+          </span>
         )}
       </td>
+
+      {/* 🗑️ Coluna de ações */}
+      <td>
+        <button
+          title="Excluir entrada"
+          onClick={() => aoExcluir(indice)}
+        >
+          🗑️
+        </button>
+      </td>
+
     </tr>
   );
 }
