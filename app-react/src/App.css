@@ -124,3 +124,29 @@
   opacity: 0.4;
   text-decoration: line-through;
 }
+
+/* ========================= CÉLULA EDITÁVEL ========================= */
+
+.celula-editavel {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+}
+
+.celula-editavel:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  transform: scale(1.01);
+}
+
+/* Valor editável */
+.celula-editavel span {
+  display: inline-block;
+  padding: 4px 8px;
+}
+
+/* Input ao editar */
+.celula-editavel input {
+  width: 100px;
+  font-size: inherit;
+  padding: 4px;
+}

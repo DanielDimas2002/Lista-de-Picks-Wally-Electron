@@ -32,7 +32,7 @@ function LinhaBanco({ indice, nome, valor, aoEditarValor, aoExcluir }) {
 
       <td>{nome}</td>
 
-      <td onClick={ativarEdicao}>
+      <td onClick={ativarEdicao} className="celula-editavel">
         {editando ? (
           <input
             type="number"
