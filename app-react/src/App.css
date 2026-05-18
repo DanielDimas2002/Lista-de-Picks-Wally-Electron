@@ -91,6 +91,7 @@
 
 .tabela-container h1 {
   font-size: clamp(20px, 2vw, 28px);
+  margin-top: 3%;
 }
 
 .tabela-container th:nth-child(1),
