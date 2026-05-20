@@ -28,8 +28,8 @@ const temaPadrao = {
     // --------------------------------------------------------
     // CORES DE DESTAQUE
     // --------------------------------------------------------
-    corPrimaria: "#22c55e",           // Botões principais
-    corPrimariaHover: "#16a34a",      // Hover do botão principal
+    corPrimaria: "#3b82f6",           // Botões principais
+    corPrimariaHover: "#2563eb",      // Hover do botão principal
     corPerigo: "#ef4444",             // Ações destrutivas (ex: remover)
     corAviso: "#f59e0b",              // Avisos
     corSucesso: "#10b981",            // Feedback positivo
