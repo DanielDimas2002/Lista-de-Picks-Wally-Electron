@@ -1,15 +1,22 @@
 // Importa os módulos necessários do Electron e Node
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
-const fs = require("fs");
+
+// ✅ Agora usamos a versão assíncrona do fs
+const fs = require("fs").promises;
 
 let mainWindow;
 
-// Função responsável por criar a janela principal do aplicativo
+// ======================================================
+// 🪟 CRIAÇÃO DA JANELA PRINCIPAL
+// ======================================================
+
 function createWindow() {
+
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
@@ -17,32 +24,48 @@ function createWindow() {
     }
   });
 
-  mainWindow.loadFile(path.join(__dirname, 'app-react', 'build', 'index.html'));
+  mainWindow.loadFile(
+    path.join(__dirname, 'app-react', 'build', 'index.html')
+  );
 
-  // ✅ Atalho tipo navegador (F12 e Ctrl+Shift+I)
-  mainWindow.webContents.on('before-input-event', (event, input) => {
+  // ====================================================
+  // 🛠️ ATALHOS PARA DEVTOOLS
+  // ====================================================
 
-    // F12
-    if (input.key === 'F12' && input.type === 'keyDown') {
-      mainWindow.webContents.toggleDevTools();
+  mainWindow.webContents.on(
+    'before-input-event',
+    function (event, input) {
+
+      // F12
+      if (
+        input.key === 'F12' &&
+        input.type === 'keyDown'
+      ) {
+        mainWindow.webContents.toggleDevTools();
+      }
+
+      // CTRL + SHIFT + I
+      if (
+        input.control &&
+        input.shift &&
+        input.key.toLowerCase() === 'i' &&
+        input.type === 'keyDown'
+      ) {
+        mainWindow.webContents.toggleDevTools();
+      }
+
     }
-
-    // Ctrl + Shift + I
-    if (
-      input.control &&
-      input.shift &&
-      input.key.toLowerCase() === 'i' &&
-      input.type === 'keyDown'
-    ) {
-      mainWindow.webContents.toggleDevTools();
-    }
-
-  });
+  );
 
   mainWindow.on('close', function () {
     mainWindow = null;
   });
+
 }
+
+// ======================================================
+// 🚀 INICIALIZAÇÃO DO ELECTRON
+// ======================================================
 
 app.whenReady().then(createWindow);
 
@@ -50,82 +73,185 @@ app.whenReady().then(createWindow);
 // 📥 LEITURA DE DADOS DO JSON
 // ======================================================
 
-ipcMain.handle("ler-dados", async function (event, tipo) {
+ipcMain.handle(
+  "ler-dados",
 
-  const caminho = path.join(__dirname, "app-react", "data", `${tipo}.json`);
+  async function (event, tipo) {
 
-  try {
+    const caminho = path.join(
+      __dirname,
+      "app-react",
+      "data",
+      `${tipo}.json`
+    );
 
-    const conteudo = fs.readFileSync(caminho, "utf8");
-    const dados = JSON.parse(conteudo);
+    try {
 
-    console.log(`📥 Dados lidos de ${tipo}.json`);
-    return dados;
+      const conteudo = await fs.readFile(
+        caminho,
+        "utf8"
+      );
 
-  } catch (erro) {
+      const dados = JSON.parse(conteudo);
 
-    console.log(`⚠️ Arquivo ${tipo}.json não encontrado ou vazio`);
-    return [];
+      console.log(`📥 Dados lidos de ${tipo}.json`);
+
+      return dados;
+
+    } catch (erro) {
+
+      console.log(
+        `⚠️ Arquivo ${tipo}.json não encontrado ou vazio`
+      );
+
+      return [];
+
+    }
 
   }
-});
+);
 
 // ======================================================
 // 💾 SALVAMENTO DE DADOS NO JSON
 // ======================================================
 
-ipcMain.handle("salvar-dados", async function (event, tipo, dados) {
+ipcMain.handle(
+  "salvar-dados",
 
-  const caminho = path.join(__dirname, "app-react", "data", `${tipo}.json`);
+  async function (event, tipo, dados) {
 
-  let lista = [];
+    const caminho = path.join(
+      __dirname,
+      "app-react",
+      "data",
+      `${tipo}.json`
+    );
 
-  try {
+    let lista = [];
 
-    const conteudo = fs.readFileSync(caminho, "utf8");
-    lista = JSON.parse(conteudo);
+    // ==========================================
+    // 📥 Tenta ler o JSON existente
+    // ==========================================
 
-  } catch (erro) {
-    console.log("Arquivo inexistente, criando novo...");
+    try {
+
+      const conteudo = await fs.readFile(
+        caminho,
+        "utf8"
+      );
+
+      lista = JSON.parse(conteudo);
+
+    } catch (erro) {
+
+      console.log(
+        `⚠️ ${tipo}.json inexistente ou vazio`
+      );
+
+    }
+
+    // ==========================================
+    // ➕ Adiciona novo item
+    // ==========================================
+
+    lista.push(dados);
+
+    // ==========================================
+    // 💾 Salva novamente no JSON
+    // ==========================================
+
+    try {
+
+      await fs.writeFile(
+        caminho,
+        JSON.stringify(lista, null, 2)
+      );
+
+      console.log(`✅ Dados salvos em ${tipo}.json`);
+
+      return true;
+
+    } catch (erro) {
+
+      console.log(
+        `❌ Erro ao salvar ${tipo}.json:`,
+        erro
+      );
+
+      return false;
+
+    }
+
   }
-
-  lista.push(dados);
-
-  fs.writeFileSync(caminho, JSON.stringify(lista, null, 2));
-
-  console.log(`✅ Dados salvos em ${tipo}.json`);
-});
-
-app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
-});
-
-app.on('activate', function () {
-  if (mainWindow === null) {
-    createWindow();
-  }
-});
+);
 
 // ======================================================
 // 🔄 ATUALIZAÇÃO COMPLETA DO JSON
 // ======================================================
 
-ipcMain.handle("atualizar-dados", async function (event, tipo, novaLista) {
+ipcMain.handle(
+  "atualizar-dados",
 
-  const caminho = path.join(__dirname, "app-react", "data", `${tipo}.json`);
+  async function (event, tipo, novaLista) {
 
-  try {
+    const caminho = path.join(
+      __dirname,
+      "app-react",
+      "data",
+      `${tipo}.json`
+    );
 
-    fs.writeFileSync(caminho, JSON.stringify(novaLista, null, 2));
+    try {
 
-    console.log(`🔄 ${tipo}.json atualizado com sucesso`);
+      await fs.writeFile(
+        caminho,
+        JSON.stringify(novaLista, null, 2)
+      );
 
-  } catch (erro) {
+      console.log(
+        `🔄 ${tipo}.json atualizado com sucesso`
+      );
 
-    console.log(`❌ Erro ao atualizar ${tipo}.json:`, erro);
+    } catch (erro) {
+
+      console.log(
+        `❌ Erro ao atualizar ${tipo}.json:`,
+        erro
+      );
+
+    }
 
   }
+);
 
-});
+// ======================================================
+// ❌ FECHAMENTO TOTAL DO APP
+// ======================================================
+
+app.on(
+  'window-all-closed',
+
+  function () {
+
+    if (process.platform !== 'darwin') {
+      app.quit();
+    }
+
+  }
+);
+
+// ======================================================
+// 🍎 REABRIR NO MAC
+// ======================================================
+
+app.on(
+  'activate',
+
+  function () {
+
+    if (mainWindow === null) {
+      createWindow();
+    }
+
+  }
+);

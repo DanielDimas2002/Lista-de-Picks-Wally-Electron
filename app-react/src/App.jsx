@@ -21,29 +21,77 @@ function App() {
 
   // Funções dos Formulário
 
-  const handleCadastrarPick = (nome, vidas) => {
-    const novoPick = { nome, vidas: parseInt(vidas) };
+  const handleCadastrarPick = async (nome, vidas) => {
+
+    const novoPick = {
+      nome,
+      vidas: parseInt(vidas)
+    };
+
     console.log("✅ Recebido no App:", novoPick);
-    setListaPicks([...listaPicks, novoPick]);
-    window.api.salvarDados("picks", novoPick); // Salvando no JSON
+
+    const novaLista = [
+      ...listaPicks,
+      novoPick
+    ];
+
+    setListaPicks(novaLista);
+
+    const salvou = await window.api.salvarDados(
+      "picks",
+      novaLista
+    );
+
+    return salvou;
   };
 
-  const handleCadastrarVida = (nome, vidas) => {
+  const handleCadastrarVida = async (nome, vidas) => {
+
     const novaVida = {
       nome,
       vidas: parseInt(vidas),
       ativo: true
     };
+
     console.log("✅ Recebido no App:", novaVida);
-    setListaVida([...listaVidas, novaVida]);
-    window.api.salvarDados("vidas", novaVida); // Salvando no JSON
+
+    const novaLista = [
+      ...listaVidas,
+      novaVida
+    ];
+
+    setListaVida(novaLista);
+
+    const salvou = await window.api.salvarDados(
+      "vidas",
+      novaLista
+    );
+
+    return salvou;
   };
 
-  const handleCadastrarBanco = (nome, valor) => {
-    const novoCredito = { nome, valor: parseInt(valor) };
+  const handleCadastrarBanco = async (nome, valor) => {
+
+    const novoCredito = {
+      nome,
+      valor: parseInt(valor)
+    };
+
     console.log("✅ Recebido no App:", novoCredito);
-    setListaBanco([...listaBanco, novoCredito]);
-    window.api.salvarDados("banco", novoCredito); // Salvando no JSON
+
+    const novaLista = [
+      ...listaBanco,
+      novoCredito
+    ];
+
+    setListaBanco(novaLista);
+
+    const salvou = await window.api.salvarDados(
+      "banco",
+      novaLista
+    );
+
+    return salvou;
   };
 
   // 🛡️ Reduz 1 vida do campeão selecionado
@@ -163,14 +211,14 @@ function App() {
 
   function excluirCredito(indice) {
 
-  const novaLista = listaBanco.filter(function (_, i) {
-    return i !== indice;
-  });
+    const novaLista = listaBanco.filter(function (_, i) {
+      return i !== indice;
+    });
 
-  setListaBanco(novaLista);
+    setListaBanco(novaLista);
 
-  window.api.atualizarDados("banco", novaLista);
-}
+    window.api.atualizarDados("banco", novaLista);
+  }
 
   // 📥 Carrega os dados reais do JSON ao iniciar o aplicativo
   useEffect(function () {

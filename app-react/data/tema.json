@@ -11,8 +11,8 @@
     "corTextoTabela": "#94a3b8"
   },
   "botoes": {
-    "corBotaoPrincipal": "#22c55e",
-    "corBotaoHover": "#16a34a"
+    "corBotaoPrincipal": "#3b82f6",
+    "corBotaoHover": "#25ebeb"
   },
   "bordas": {
     "corBordaTabela": "#334155",

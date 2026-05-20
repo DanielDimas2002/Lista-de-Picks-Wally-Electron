@@ -84,19 +84,38 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
 
           color: temaAtual.corTextoPrincipal
         }}
-        onClick={() => {
+        onClick={async () => {
+
           if (campoVazio(nomePick, vidasPick) || parseInt(vidasPick) < 1) {
+
             setBotaoPick("Preencha corretamente!");
             setCorPick("botaoErro");
-            resetarBotao(setBotaoPick, setCorPick, "Cadastrar Pick", timerPick);
+
+            resetarBotao(
+              setBotaoPick,
+              setCorPick,
+              "Cadastrar Pick",
+              timerPick
+            );
+
             return;
           }
-          handleCadastrarPick(nomePick, vidasPick);
+
+          await handleCadastrarPick(nomePick, vidasPick);
+
           setBotaoPick("Cadastrado!");
           setCorPick("botaoSucesso");
+
           setNomePick("");
           setVidasPick("");
-          resetarBotao(setBotaoPick, setCorPick, "Cadastrar Pick", timerPick);
+
+          resetarBotao(
+            setBotaoPick,
+            setCorPick,
+            "Cadastrar Pick",
+            timerPick
+          );
+
         }}
       >
         {botaoPick}
@@ -137,14 +156,14 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
 
           color: temaAtual.corTextoPrincipal
         }}
-        onClick={() => {
+        onClick={async () => {
           if (campoVazio(nomeVida, vidasVida) || parseInt(vidasVida) < 1) {
             setBotaoVida("Preencha corretamente!");
             setCorVida("botaoErro");
             resetarBotao(setBotaoVida, setCorVida, "Cadastrar Vida", timerVida);
             return;
           }
-          handleCadastrarVida(nomeVida, vidasVida);
+          await handleCadastrarVida(nomeVida, vidasVida);
           setBotaoVida("Cadastrado!");
           setCorVida("botaoSucesso");
           setNomeVida("");
@@ -190,7 +209,7 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
 
           color: temaAtual.corTextoPrincipal
         }}
-        onClick={() => {
+        onClick={async () => {
           if (campoVazio(nomeBanco, valorBanco) || parseInt(valorBanco) < 1) {
             setBotaoBanco("Preencha corretamente!");
             setCorBanco("botaoErro");
@@ -198,7 +217,7 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
             return;
           }
 
-          handleCadastrarBanco(nomeBanco, valorBanco);
+          await handleCadastrarBanco(nomeBanco, valorBanco);
 
           setBotaoBanco("Cadastrado!");
           setCorBanco("botaoSucesso");

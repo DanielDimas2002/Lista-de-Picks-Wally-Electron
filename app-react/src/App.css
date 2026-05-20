@@ -225,10 +225,9 @@
   overflow-y: auto;
 }
 
-.botaoPadrao {
-  background-color: var(--corPrimaria);
-  color: var(--corTextoPrincipal);
-
+.botaoPadrao,
+.botaoSucesso,
+.botaoErro {
   border: none;
   padding: 6px 10px;
   border-radius: 6px;
@@ -241,28 +240,5 @@
 }
 
 .botaoPadrao:hover {
-  background-color: var(--corPrimariaHover);
   transform: scale(1.02);
-}
-
-.botaoSucesso {
-  background-color: #28a745;
-  color: white;
-
-  border: none;
-  padding: 6px 10px;
-  border-radius: 6px;
-
-  cursor: default;
-}
-
-.botaoErro {
-  background-color: #dc3545;
-  color: white;
-
-  border: none;
-  padding: 6px 10px;
-  border-radius: 6px;
-
-  cursor: default;
 }
