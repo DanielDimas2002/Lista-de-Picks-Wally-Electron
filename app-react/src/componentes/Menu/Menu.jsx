@@ -1,7 +1,6 @@
 // src/componentes/Menu/Menu.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./Menu.module.css";
 import { useTema } from "../../contexto/TemaContext";
 
 function Menu() {
@@ -10,19 +9,20 @@ function Menu() {
 
     return (
         <header
-            className={styles.header}
+            className="header"
             style={{
                 backgroundColor: temaAtual.fundoSecundario,
                 color: temaAtual.corTextoPrincipal,
                 borderBottom: `1px solid ${temaAtual.bordaTabela}`
             }}
         >
-            <h1 className={styles.titulo}>Sistema do Wally</h1>
+            <h1 className="titulo">Sistema do Wally</h1>
 
-            <nav className={styles.nav}>
+            <nav className="nav">
+
                 <Link
                     to="/picks"
-                    className={styles.link}
+                    className="link"
                     style={{ color: temaAtual.corTextoPrincipal }}
                 >
                     📋 Picks
@@ -30,7 +30,7 @@ function Menu() {
 
                 <Link
                     to="/vidas"
-                    className={styles.link}
+                    className="link"
                     style={{ color: temaAtual.corTextoPrincipal }}
                 >
                     ❤️ Vidas
@@ -38,20 +38,23 @@ function Menu() {
 
                 <Link
                     to="/banco"
-                    className={styles.link}
+                    className="link"
                     style={{ color: temaAtual.corTextoPrincipal }}
                 >
                     💰 Banco
                 </Link>
+
                 <Link
                     to="/configuracoes"
-                    className={styles.link}
+                    className="link"
                     style={{ color: temaAtual.corTextoPrincipal }}
                 >
                     ⚙️ Configurações
                 </Link>
+
             </nav>
         </header>
     );
 }
-export default Menu
+
+export default Menu;

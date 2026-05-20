@@ -150,3 +150,119 @@
   font-size: inherit;
   padding: 4px;
 }
+
+/* ========================= MENU SUPERIOR ========================= */
+
+.header {
+  background-color: var(--fundoSecundario);
+  padding: 12px 24px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+  height: 60px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 10;
+
+  border-bottom: 1px solid var(--bordaTabela);
+}
+
+.titulo {
+  font-size: clamp(20px, 1.8vw, 32px);
+  color: var(--corTextoPrincipal);
+  margin: 0;
+  font-weight: bold;
+}
+
+.nav {
+  display: flex;
+  gap: 16px;
+}
+
+.link {
+  color: var(--corDestaque);
+  text-decoration: none;
+  font-weight: bold;
+
+  font-size: clamp(14px, 1vw, 20px);
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.link:hover {
+  color: var(--corTextoPrincipal);
+  transform: scale(1.05);
+}
+
+/* ========================= ASIDE ========================= */
+
+.aside {
+  width: 300px;
+  padding: 15px;
+
+  background-color: var(--fundoAside);
+
+  border-left: 2px solid var(--bordaTabela);
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  position: fixed;
+  right: 0;
+  top: 60px;
+  bottom: 0;
+
+  overflow-y: auto;
+}
+
+.botaoPadrao {
+  background-color: var(--corPrimaria);
+  color: var(--corTextoPrincipal);
+
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.botaoPadrao:hover {
+  background-color: var(--corPrimariaHover);
+  transform: scale(1.02);
+}
+
+.botaoSucesso {
+  background-color: #28a745;
+  color: white;
+
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+
+  cursor: default;
+}
+
+.botaoErro {
+  background-color: #dc3545;
+  color: white;
+
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+
+  cursor: default;
+}

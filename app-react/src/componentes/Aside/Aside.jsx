@@ -1,6 +1,4 @@
-// src/componentes/Aside/Aside.jsx
 import React, { useState, useRef } from "react";
-import styles from "./Aside.module.css";
 import { useTema } from "../../contexto/TemaContext";
 
 function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco }) {
@@ -45,7 +43,7 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
   }
 
   return (
-    <aside className={styles.aside}
+    <aside className="aside"
       style={{
         backgroundColor: temaAtual.fundoAside,
         color: temaAtual.corTextoPrincipal,
@@ -75,7 +73,7 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
         }}
       />
       <button
-        className={`${styles.botao} ${corPick ? styles[corPick] : ""}`}
+        className={corPick}
         onClick={() => {
           if (campoVazio(nomePick, vidasPick) || parseInt(vidasPick) < 1) {
             setBotaoPick("Preencha corretamente!");
@@ -118,7 +116,7 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
         }}
       />
       <button
-        className={`${styles.botao} ${corVida ? styles[corVida] : ""}`}
+        className={corVida}
         onClick={() => {
           if (campoVazio(nomeVida, vidasVida) || parseInt(vidasVida) < 1) {
             setBotaoVida("Preencha corretamente!");
@@ -161,7 +159,7 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
         }}
       />
       <button
-        className={`${styles.botao} ${corBanco ? styles[corBanco] : ""}`}
+        className={corBanco}
         onClick={() => {
           if (campoVazio(nomeBanco, valorBanco) || parseInt(valorBanco) < 1) {
             setBotaoBanco("Preencha corretamente!");
