@@ -74,6 +74,16 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
       />
       <button
         className={corPick}
+        style={{
+          backgroundColor:
+            corPick === "botaoPadrao"
+              ? temaAtual.corPrimaria
+              : corPick === "botaoSucesso"
+                ? temaAtual.corSucesso
+                : temaAtual.corPerigo,
+
+          color: temaAtual.corTextoPrincipal
+        }}
         onClick={() => {
           if (campoVazio(nomePick, vidasPick) || parseInt(vidasPick) < 1) {
             setBotaoPick("Preencha corretamente!");
@@ -117,6 +127,16 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
       />
       <button
         className={corVida}
+        style={{
+          backgroundColor:
+            corVida === "botaoPadrao"
+              ? temaAtual.corPrimaria
+              : corVida === "botaoSucesso"
+                ? temaAtual.corSucesso
+                : temaAtual.corPerigo,
+
+          color: temaAtual.corTextoPrincipal
+        }}
         onClick={() => {
           if (campoVazio(nomeVida, vidasVida) || parseInt(vidasVida) < 1) {
             setBotaoVida("Preencha corretamente!");
@@ -160,6 +180,16 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
       />
       <button
         className={corBanco}
+        style={{
+          backgroundColor:
+            corBanco === "botaoPadrao"
+              ? temaAtual.corPrimaria
+              : corBanco === "botaoSucesso"
+                ? temaAtual.corSucesso
+                : temaAtual.corPerigo,
+
+          color: temaAtual.corTextoPrincipal
+        }}
         onClick={() => {
           if (campoVazio(nomeBanco, valorBanco) || parseInt(valorBanco) < 1) {
             setBotaoBanco("Preencha corretamente!");
@@ -167,11 +197,15 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
             resetarBotao(setBotaoBanco, setCorBanco, "Cadastrar Banco", timerBanco);
             return;
           }
+
           handleCadastrarBanco(nomeBanco, valorBanco);
+
           setBotaoBanco("Cadastrado!");
           setCorBanco("botaoSucesso");
+
           setNomeBanco("");
           setValorBanco("");
+
           resetarBotao(setBotaoBanco, setCorBanco, "Cadastrar Banco", timerBanco);
         }}
       >
