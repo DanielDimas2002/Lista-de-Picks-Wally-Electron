@@ -1,8 +1,8 @@
 // Importa os módulos necessários do Electron e Node
-const { app, BrowserWindow, ipcMain } = require('electron');
-const path = require('path');
+const { app, BrowserWindow, ipcMain } = require("electron");
+const path = require("path");
 
-// ✅ Agora usamos a versão assíncrona do fs
+// ✅ Versão assíncrona do fs
 const fs = require("fs").promises;
 
 let mainWindow;
@@ -18,14 +18,14 @@ function createWindow() {
     height: 600,
 
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      preload: path.join(__dirname, "preload.js"),
       contextIsolation: true,
       nodeIntegration: false
     }
   });
 
   mainWindow.loadFile(
-    path.join(__dirname, 'app-react', 'build', 'index.html')
+    path.join(__dirname, "app-react", "build", "index.html")
   );
 
   // ====================================================
@@ -33,13 +33,14 @@ function createWindow() {
   // ====================================================
 
   mainWindow.webContents.on(
-    'before-input-event',
+    "before-input-event",
+
     function (event, input) {
 
       // F12
       if (
-        input.key === 'F12' &&
-        input.type === 'keyDown'
+        input.key === "F12" &&
+        input.type === "keyDown"
       ) {
         mainWindow.webContents.toggleDevTools();
       }
@@ -48,8 +49,8 @@ function createWindow() {
       if (
         input.control &&
         input.shift &&
-        input.key.toLowerCase() === 'i' &&
-        input.type === 'keyDown'
+        input.key.toLowerCase() === "i" &&
+        input.type === "keyDown"
       ) {
         mainWindow.webContents.toggleDevTools();
       }
@@ -57,7 +58,7 @@ function createWindow() {
     }
   );
 
-  mainWindow.on('close', function () {
+  mainWindow.on("close", function () {
     mainWindow = null;
   });
 
@@ -112,7 +113,7 @@ ipcMain.handle(
 );
 
 // ======================================================
-// 💾 SALVAMENTO DE DADOS NO JSON
+// 💾 SALVAMENTO COMPLETO NO JSON
 // ======================================================
 
 ipcMain.handle(
@@ -127,44 +128,11 @@ ipcMain.handle(
       `${tipo}.json`
     );
 
-    let lista = [];
-
-    // ==========================================
-    // 📥 Tenta ler o JSON existente
-    // ==========================================
-
-    try {
-
-      const conteudo = await fs.readFile(
-        caminho,
-        "utf8"
-      );
-
-      lista = JSON.parse(conteudo);
-
-    } catch (erro) {
-
-      console.log(
-        `⚠️ ${tipo}.json inexistente ou vazio`
-      );
-
-    }
-
-    // ==========================================
-    // ➕ Adiciona novo item
-    // ==========================================
-
-    lista.push(dados);
-
-    // ==========================================
-    // 💾 Salva novamente no JSON
-    // ==========================================
-
     try {
 
       await fs.writeFile(
         caminho,
-        JSON.stringify(lista, null, 2)
+        JSON.stringify(dados, null, 2)
       );
 
       console.log(`✅ Dados salvos em ${tipo}.json`);
@@ -212,12 +180,16 @@ ipcMain.handle(
         `🔄 ${tipo}.json atualizado com sucesso`
       );
 
+      return true;
+
     } catch (erro) {
 
       console.log(
         `❌ Erro ao atualizar ${tipo}.json:`,
         erro
       );
+
+      return false;
 
     }
 
@@ -229,11 +201,11 @@ ipcMain.handle(
 // ======================================================
 
 app.on(
-  'window-all-closed',
+  "window-all-closed",
 
   function () {
 
-    if (process.platform !== 'darwin') {
+    if (process.platform !== "darwin") {
       app.quit();
     }
 
@@ -245,7 +217,7 @@ app.on(
 // ======================================================
 
 app.on(
-  'activate',
+  "activate",
 
   function () {
 

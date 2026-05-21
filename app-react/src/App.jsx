@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Menu from './componentes/Menu/Menu';
@@ -20,79 +20,90 @@ function App() {
   const [listaBanco, setListaBanco] = useState([]);
 
   // Funções dos Formulário
+  const handleCadastrarPick = useCallback(
+    async (nome, vidas) => {
 
-  const handleCadastrarPick = async (nome, vidas) => {
+      const novoPick = {
+        nome,
+        vidas: parseInt(vidas)
+      };
 
-    const novoPick = {
-      nome,
-      vidas: parseInt(vidas)
-    };
+      console.log("✅ Recebido no App:", novoPick);
 
-    console.log("✅ Recebido no App:", novoPick);
+      const novaLista = [
+        ...listaPicks,
+        novoPick
+      ];
 
-    const novaLista = [
-      ...listaPicks,
-      novoPick
-    ];
+      setListaPicks(novaLista);
 
-    setListaPicks(novaLista);
+      const salvou = await window.api.salvarDados(
+        "picks",
+        novaLista
+      );
 
-    const salvou = await window.api.salvarDados(
-      "picks",
-      novaLista
-    );
+      return salvou;
 
-    return salvou;
-  };
+    },
+    [listaPicks]
+  );
 
-  const handleCadastrarVida = async (nome, vidas) => {
+  const handleCadastrarVida = useCallback(
+    async (nome, vidas) => {
 
-    const novaVida = {
-      nome,
-      vidas: parseInt(vidas),
-      ativo: true
-    };
+      const novaVida = {
+        nome,
+        vidas: parseInt(vidas),
+        ativo: true
+      };
 
-    console.log("✅ Recebido no App:", novaVida);
+      console.log("✅ Recebido no App:", novaVida);
 
-    const novaLista = [
-      ...listaVidas,
-      novaVida
-    ];
+      const novaLista = [
+        ...listaVidas,
+        novaVida
+      ];
 
-    setListaVida(novaLista);
+      setListaVida(novaLista);
 
-    const salvou = await window.api.salvarDados(
-      "vidas",
-      novaLista
-    );
+      const salvou = await window.api.salvarDados(
+        "vidas",
+        novaLista
+      );
 
-    return salvou;
-  };
+      return salvou;
 
-  const handleCadastrarBanco = async (nome, valor) => {
+    },
+    [listaVidas]
+  );
 
-    const novoCredito = {
-      nome,
-      valor: parseInt(valor)
-    };
+  const handleCadastrarBanco = useCallback(
+    async (nome, valor) => {
 
-    console.log("✅ Recebido no App:", novoCredito);
+      const novoCredito = {
+        nome,
+        valor: parseInt(valor)
+      };
 
-    const novaLista = [
-      ...listaBanco,
-      novoCredito
-    ];
+      console.log("✅ Recebido no App:", novoCredito);
 
-    setListaBanco(novaLista);
+      const novaLista = [
+        ...listaBanco,
+        novoCredito
+      ];
 
-    const salvou = await window.api.salvarDados(
-      "banco",
-      novaLista
-    );
+      setListaBanco(novaLista);
 
-    return salvou;
-  };
+      const salvou = await window.api.salvarDados(
+        "banco",
+        novaLista
+      );
+
+      return salvou;
+
+    },
+    [listaBanco]
+  );
 
   // 🛡️ Reduz 1 vida do campeão selecionado
   function reduzirVida(indice) {

@@ -1,7 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef} from "react";
 import { useTema } from "../../contexto/TemaContext";
 
-function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco }) {
+const Aside = React.memo(function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco }) {
 
   const { temaAtual } = useTema();
 
@@ -232,6 +232,6 @@ function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco 
       </button>
     </aside>
   );
-}
+});
 
 export default Aside;
