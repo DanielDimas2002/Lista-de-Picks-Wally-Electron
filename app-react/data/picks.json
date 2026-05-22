@@ -46,5 +46,13 @@
   {
     "nome": "TESTE 2",
     "vidas": 3
+  },
+  {
+    "nome": "RR",
+    "vidas": 3
+  },
+  {
+    "nome": "ee",
+    "vidas": 5
   }
 ]

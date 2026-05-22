@@ -54,66 +54,19 @@
     "vidas": 8,
     "ativo": true
   },
-  [
-    {
-      "nome": "80",
-      "vidas": 40,
-      "ativo": true
-    },
-    {
-      "nome": "oi",
-      "vidas": 9,
-      "ativo": true
-    },
-    {
-      "nome": "BOM DIA",
-      "vidas": 1,
-      "ativo": true
-    },
-    {
-      "nome": "Bom dia3",
-      "vidas": 1,
-      "ativo": true
-    },
-    {
-      "nome": "Bom dia ",
-      "vidas": 0,
-      "ativo": false
-    },
-    {
-      "nome": "e",
-      "vidas": 3,
-      "ativo": true
-    },
-    {
-      "nome": "goooooooooo",
-      "vidas": 0,
-      "ativo": false
-    },
-    {
-      "nome": "Oi",
-      "vidas": 3,
-      "ativo": true
-    },
-    {
-      "nome": "d",
-      "vidas": 3,
-      "ativo": true
-    },
-    {
-      "nome": "y",
-      "vidas": 4,
-      "ativo": true
-    },
-    {
-      "nome": "y",
-      "vidas": 8,
-      "ativo": true
-    },
-    {
-      "nome": "w",
-      "vidas": 3,
-      "ativo": true
-    }
-  ]
+  {
+    "nome": "RR",
+    "vidas": 6,
+    "ativo": true
+  },
+  {
+    "nome": "TT",
+    "vidas": 4,
+    "ativo": true
+  },
+  {
+    "nome": "tt",
+    "vidas": 7,
+    "ativo": true
+  }
 ]

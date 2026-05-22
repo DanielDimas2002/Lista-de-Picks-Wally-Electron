@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './App.css';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Menu from './componentes/Menu/Menu';
@@ -6,10 +6,49 @@ import Aside from "./componentes/Aside/Aside";
 import TabelaVida from "./componentes/TabelaVida/TabelaVida";
 import TabelaPick from "./componentes/TabelaPick/TabelaPick";
 import TabelaBanco from "./componentes/TabelaBanco/TabelaBanco";
+import Toast from './componentes/Toast/Toast';
 import { TemaProvider, useTema } from "./contexto/TemaContext";
 import TelaConfiguracoes from "./componentes/TelaConfiguracoes/TelaConfiguracoes";
 
 function App() {
+
+  // 🔁 Armazena o timer atual do toast
+  // para evitar conflitos entre múltiplas notificações
+  const timerToast = useRef(null);
+
+  // 📢 Estado responsável pelo toast atual exibido na tela
+  const [toast, setToast] = useState(null);
+
+  // ======================================================
+  // 🔔 EXIBE UMA NOTIFICAÇÃO TEMPORÁRIA
+  // ======================================================
+
+  function mostrarToast(mensagem, tipo = "sucesso") {
+
+    // Atualiza os dados do toast
+    setToast({
+      mensagem,
+      tipo
+    });
+
+    // Se já existir um timer ativo,
+    // ele é cancelado antes de criar outro
+    if (timerToast.current) {
+      clearTimeout(timerToast.current);
+    }
+
+    // Define o tempo de exibição do toast
+    timerToast.current = setTimeout(() => {
+
+      // Remove o toast da tela
+      setToast(null);
+
+      // Limpa a referência do timer
+      timerToast.current = null;
+
+    }, 2000);
+
+  }
 
   // ================================
   // 📦 Estados das tabelas
@@ -42,6 +81,14 @@ function App() {
         novaLista
       );
 
+      if (salvou) {
+
+        mostrarToast(
+          "✅ Pick cadastrado com sucesso"
+        );
+
+      }
+
       return salvou;
 
     },
@@ -71,6 +118,10 @@ function App() {
         novaLista
       );
 
+      mostrarToast(
+        "❤️ Vida cadastrada"
+      );
+
       return salvou;
 
     },
@@ -97,6 +148,10 @@ function App() {
       const salvou = await window.api.salvarDados(
         "banco",
         novaLista
+      );
+
+      mostrarToast(
+        "💰 Crédito cadastrado"
       );
 
       return salvou;
@@ -318,6 +373,27 @@ function App() {
           handleCadastrarVida={handleCadastrarVida}
           handleCadastrarBanco={handleCadastrarBanco}
         />
+
+        {
+          /* ======================================================
+           // 🔔 TOAST GLOBAL DA APLICAÇÃO
+           // ======================================================
+           //
+           // O toast só é renderizado quando existe
+           // algum conteúdo armazenado no estado `toast`.
+           //
+           // Isso evita renderizações desnecessárias
+           // e mantém o componente desacoplado
+           // dos formulários da aplicação.
+           // */
+        }
+
+        {toast && (
+          <Toast
+            mensagem={toast.mensagem}
+            tipo={toast.tipo}
+          />
+        )}
       </LayoutAplicacao>
     </TemaProvider>
   );
