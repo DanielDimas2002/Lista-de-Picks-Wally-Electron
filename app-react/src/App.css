@@ -47,7 +47,7 @@
 
 .conteudo-principal {
   flex: 1;
-  padding: 60px 20px 20px 20px;
+  padding: 60px 20px 20px 0;
 }
 
 /* ========================= TABELAS (ESCOPO CONTROLADO) ========================= */
@@ -78,11 +78,11 @@
 }
 
 .tabela-container tbody tr:nth-child(even) {
-  background-color: rgba(255, 255, 255, 0.02);
+  background-color: var(--corLinhaTabela);
 }
 
 .tabela-container tbody tr:hover {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: var(--corHoverTabela);
 }
 
 .tabela-container tbody tr:last-child {
@@ -107,6 +107,7 @@
 .tabela-container th:nth-child(2),
 .tabela-container td:nth-child(2) {
   white-space: nowrap;
+  text-align: center;
 }
 
 .tabela-container th:nth-child(3),
