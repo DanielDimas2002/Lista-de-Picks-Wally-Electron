@@ -321,7 +321,25 @@ function App() {
         style={{
           backgroundColor: temaAtual.fundoAplicacao,
           color: temaAtual.corTextoPrincipal,
-          minHeight: "100vh"
+          minHeight: "100vh",
+
+          // ==================================================
+          // 🎨 CSS VARIABLES GLOBAIS DO TEMA
+          // ==================================================
+
+          "--fundoTabela": temaAtual.fundoTabela,
+          "--fundoSecundario": temaAtual.fundoSecundario,
+
+          "--corTextoPrincipal": temaAtual.corTextoPrincipal,
+          "--corTextoSecundario": temaAtual.corTextoSecundario,
+
+          "--bordaTabela": temaAtual.bordaTabela,
+
+          "--corPrimaria": temaAtual.corPrimaria,
+          "--corPrimariaHover": temaAtual.corPrimariaHover,
+
+          "--raioBordaPadrao": temaAtual.raioBordaPadrao,
+          "--sombraPadrao": temaAtual.sombraPadrao
         }}
       >
         {children}

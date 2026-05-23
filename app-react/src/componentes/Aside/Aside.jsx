@@ -46,7 +46,7 @@ const Aside = React.memo(function Aside({ handleCadastrarPick, handleCadastrarVi
     <aside className="aside"
       style={{
         backgroundColor: temaAtual.fundoAside,
-        color: temaAtual.corTextoPrincipal,
+        color: temaAtual.corTextoSecundario,
         borderLeft: `1px solid ${temaAtual.bordaAside}`
       }}>
       <h3>📋 Cadastro de Picks</h3>
@@ -57,7 +57,7 @@ const Aside = React.memo(function Aside({ handleCadastrarPick, handleCadastrarVi
         onChange={(e) => setNomePick(e.target.value)}
         style={{
           backgroundColor: temaAtual.fundoInput,
-          color: temaAtual.corTextoPrincipal,
+          color: temaAtual.corTextoSecundario,
           border: `1px solid ${temaAtual.bordaInput}`
         }}
       />
@@ -68,7 +68,7 @@ const Aside = React.memo(function Aside({ handleCadastrarPick, handleCadastrarVi
         onChange={(e) => setVidasPick(e.target.value)}
         style={{
           backgroundColor: temaAtual.fundoInput,
-          color: temaAtual.corTextoPrincipal,
+          color: temaAtual.corTextoSecundario,
           border: `1px solid ${temaAtual.bordaInput}`
         }}
       />
@@ -82,7 +82,7 @@ const Aside = React.memo(function Aside({ handleCadastrarPick, handleCadastrarVi
                 ? temaAtual.corSucesso
                 : temaAtual.corPerigo,
 
-          color: temaAtual.corTextoPrincipal
+          color: temaAtual.corTextoSecundario
         }}
         onClick={async () => {
 
@@ -129,7 +129,7 @@ const Aside = React.memo(function Aside({ handleCadastrarPick, handleCadastrarVi
         onChange={(e) => setNomeVida(e.target.value)}
         style={{
           backgroundColor: temaAtual.fundoInput,
-          color: temaAtual.corTextoPrincipal,
+          color: temaAtual.corTextoSecundario,
           border: `1px solid ${temaAtual.bordaInput}`
         }}
       />
@@ -140,7 +140,7 @@ const Aside = React.memo(function Aside({ handleCadastrarPick, handleCadastrarVi
         onChange={(e) => setVidasVida(e.target.value)}
         style={{
           backgroundColor: temaAtual.fundoInput,
-          color: temaAtual.corTextoPrincipal,
+          color: temaAtual.corTextoSecundario,
           border: `1px solid ${temaAtual.bordaInput}`
         }}
       />
@@ -154,7 +154,7 @@ const Aside = React.memo(function Aside({ handleCadastrarPick, handleCadastrarVi
                 ? temaAtual.corSucesso
                 : temaAtual.corPerigo,
 
-          color: temaAtual.corTextoPrincipal
+          color: temaAtual.corTextoSecundario
         }}
         onClick={async () => {
           if (campoVazio(nomeVida, vidasVida) || parseInt(vidasVida) < 1) {
@@ -182,7 +182,7 @@ const Aside = React.memo(function Aside({ handleCadastrarPick, handleCadastrarVi
         onChange={(e) => setNomeBanco(e.target.value)}
         style={{
           backgroundColor: temaAtual.fundoInput,
-          color: temaAtual.corTextoPrincipal,
+          color: temaAtual.corTextoSecundario,
           border: `1px solid ${temaAtual.bordaInput}`
         }}
       />
@@ -193,7 +193,7 @@ const Aside = React.memo(function Aside({ handleCadastrarPick, handleCadastrarVi
         onChange={(e) => setValorBanco(e.target.value)}
         style={{
           backgroundColor: temaAtual.fundoInput,
-          color: temaAtual.corTextoPrincipal,
+          color: temaAtual.corTextoSecundario,
           border: `1px solid ${temaAtual.bordaInput}`
         }}
       />
@@ -207,7 +207,7 @@ const Aside = React.memo(function Aside({ handleCadastrarPick, handleCadastrarVi
                 ? temaAtual.corSucesso
                 : temaAtual.corPerigo,
 
-          color: temaAtual.corTextoPrincipal
+          color: temaAtual.corTextoSecundario
         }}
         onClick={async () => {
           if (campoVazio(nomeBanco, valorBanco) || parseInt(valorBanco) < 1) {
