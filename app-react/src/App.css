@@ -117,7 +117,7 @@
 
 .tabela-container th,
 .tabela-container td {
-  padding: 6px 4px;
+  padding: 6px 12px;
   text-align: left;
 }
 
@@ -247,6 +247,16 @@
 .botaoPadrao:hover {
   background-color: var(--corPrimariaHover);
   transform: scale(1.02);
+}
+
+.aside input::placeholder {
+  color: var(--corTextoSecundario);
+  opacity: 0.7;
+}
+
+.aside input {
+  color: var(--corTextoSecundario);
+  font-weight: bold;
 }
 
 /* Toast */

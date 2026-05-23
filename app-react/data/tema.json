@@ -2,7 +2,7 @@
   "planoFundo": {
     "corFundoGeral": "#0f172a",
     "corFundoMenu": "#1e293b",
-    "corFundoTabela": "#02170e",
+    "corFundoTabela": "#020617",
     "corFundoAside": "#020617",
     "corFundoLinha": "#020617"
   },
@@ -15,7 +15,7 @@
     "corBotaoHover": "#25ebeb"
   },
   "bordas": {
-    "corBordaTabela": "#543456",
+    "corBordaTabela": "#334155",
     "corBordaInputs": "#475569"
   },
   "destaques": {
