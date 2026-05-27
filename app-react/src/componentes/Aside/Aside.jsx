@@ -1,9 +1,15 @@
-import React, { useState, useRef} from "react";
+import React, { useState, useRef } from "react";
 import { useTema } from "../../contexto/TemaContext";
+
 
 const Aside = React.memo(function Aside({ handleCadastrarPick, handleCadastrarVida, handleCadastrarBanco }) {
 
   const { temaAtual } = useTema();
+
+  // ✅ Hover
+  const [hoverPick, setHoverPick] = useState(false);
+  const [hoverVida, setHoverVida] = useState(false);
+  const [hoverBanco, setHoverBanco] = useState(false);
 
   // 🎯 Estados dos inputs
   const [nomePick, setNomePick] = useState("");
@@ -39,7 +45,7 @@ const Aside = React.memo(function Aside({ handleCadastrarPick, handleCadastrarVi
       setTexto(textoOriginal);
       setCor("botaoPadrao");
       timerRef.current = null; // limpa o ref
-    }, 1500); 
+    }, 1500);
   }
 
   return (
@@ -73,11 +79,15 @@ const Aside = React.memo(function Aside({ handleCadastrarPick, handleCadastrarVi
         }}
       />
       <button
+        onMouseEnter={() => setHoverPick(true)}
+        onMouseLeave={() => setHoverPick(false)}
         className={corPick}
         style={{
           backgroundColor:
             corPick === "botaoPadrao"
-              ? temaAtual.corPrimaria
+              ? hoverPick
+                ? temaAtual.corPrimariaHover
+                : temaAtual.corPrimaria
               : corPick === "botaoSucesso"
                 ? temaAtual.corSucesso
                 : temaAtual.corPerigo,
@@ -145,11 +155,15 @@ const Aside = React.memo(function Aside({ handleCadastrarPick, handleCadastrarVi
         }}
       />
       <button
+        onMouseEnter={() => setHoverVida(true)}
+        onMouseLeave={() => setHoverVida(false)}
         className={corVida}
         style={{
           backgroundColor:
             corVida === "botaoPadrao"
-              ? temaAtual.corPrimaria
+              ? hoverVida
+                ? temaAtual.corPrimariaHover
+                : temaAtual.corPrimaria
               : corVida === "botaoSucesso"
                 ? temaAtual.corSucesso
                 : temaAtual.corPerigo,
@@ -198,11 +212,15 @@ const Aside = React.memo(function Aside({ handleCadastrarPick, handleCadastrarVi
         }}
       />
       <button
+        onMouseEnter={() => setHoverBanco(true)}
+        onMouseLeave={() => setHoverBanco(false)}
         className={corBanco}
         style={{
           backgroundColor:
             corBanco === "botaoPadrao"
-              ? temaAtual.corPrimaria
+              ? hoverBanco
+                ? temaAtual.corPrimariaHover
+                : temaAtual.corPrimaria
               : corBanco === "botaoSucesso"
                 ? temaAtual.corSucesso
                 : temaAtual.corPerigo,
