@@ -100,11 +100,7 @@ function TemaProvider({ children }) {
 
             window.api.atualizarDados("tema", jsonConvertido);
 
-            console.log("💾 Tema salvo no JSON");
-
         } catch (erro) {
-
-            console.log("❌ Erro ao salvar tema:", erro);
 
         }
     }
@@ -136,11 +132,7 @@ function TemaProvider({ children }) {
 
             window.api.atualizarDados("tema", jsonConvertido);
 
-            console.log("♻️ Tema padrão restaurado");
-
         } catch (erro) {
-
-            console.log("❌ Erro ao restaurar tema:", erro);
 
         }
     }
@@ -179,13 +171,9 @@ function TemaProvider({ children }) {
 
                     setTemaAtual(temaConvertido);
 
-                    console.log("🎨 Tema carregado do JSON");
-
                 }
 
             } catch (erro) {
-
-                console.log("❌ Erro ao carregar tema:", erro);
 
             }
 

@@ -67,8 +67,6 @@ function App() {
         vidas: parseInt(vidas)
       };
 
-      console.log("✅ Recebido no App:", novoPick);
-
       const novaLista = [
         ...listaPicks,
         novoPick
@@ -104,8 +102,6 @@ function App() {
         ativo: true
       };
 
-      console.log("✅ Recebido no App:", novaVida);
-
       const novaLista = [
         ...listaVidas,
         novaVida
@@ -135,8 +131,6 @@ function App() {
         nome,
         valor: parseInt(valor)
       };
-
-      console.log("✅ Recebido no App:", novoCredito);
 
       const novaLista = [
         ...listaBanco,
