@@ -30,7 +30,8 @@ function TelaConfiguracoes() {
       titulo: "Textos",
       campos: [
         { label: "Texto Principal", chave: "corTextoPrincipal" },
-        { label: "Texto Secundário", chave: "corTextoSecundario" }
+        { label: "Texto Secundário", chave: "corTextoSecundario" },
+        { label: "Texto Botão", chave: "corTextoBotao" }
       ]
     },
     {

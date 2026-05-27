@@ -24,11 +24,12 @@ const temaPadrao = {
     fundoSecundario: "#1e293b",       // Fundo de cards, tabelas e aside
     corTextoPrincipal: "#e2e8f0",     // Texto padrão
     corTextoSecundario: "#94a3b8",    // Texto menos destacado
+    corTextoBotao: "#ffffff",
 
     // --------------------------------------------------------
     // CORES DE DESTAQUE
     // --------------------------------------------------------
-    corPrimaria: "#3b82f6",           // Botões principais
+    corPrimaria: "#1d4ed8",           // Botões principais
     corPrimariaHover: "#25ebeb",      // Hover do botão principal
     corPerigo: "#ef4444",             // Ações destrutivas (ex: remover)
     corAviso: "#f59e0b",              // Avisos

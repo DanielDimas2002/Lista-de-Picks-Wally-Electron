@@ -8,10 +8,11 @@
   },
   "textos": {
     "corTextoPrincipal": "#e2e8f0",
-    "corTextoTabela": "#94a3b8"
+    "corTextoTabela": "#94a3b8",
+    "corTextoBotao": "#ffffff"
   },
   "botoes": {
-    "corBotaoPrincipal": "#3b82f6",
+    "corBotaoPrincipal": "#5a1616",
     "corBotaoHover": "#25ebeb"
   },
   "bordas": {

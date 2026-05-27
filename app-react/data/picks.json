@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "nome": "TESTE1",
+    "vidas": 3
+  },
+  {
+    "nome": "ESTE 3",
+    "vidas": 3
+  },
+  {
+    "nome": "TESTE 5",
+    "vidas": 4
+  }
+]

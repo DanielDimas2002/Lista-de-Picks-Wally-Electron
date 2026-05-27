@@ -23,6 +23,8 @@ function converterJsonParaTema(json) {
         fundoInput: json.planoFundo.corFundoLinha,
         bordaInput: json.bordas.corBordaInputs,
 
+        corTextoBotao: json.textos.corTextoBotao,
+
         corPerigo: json.destaques.corDestaque,
         corAviso: "#f59e0b",
         corSucesso: "#10b981",
@@ -50,7 +52,8 @@ function converterTemaParaJson(tema) {
 
         textos: {
             corTextoPrincipal: tema.corTextoPrincipal,
-            corTextoTabela: tema.corTextoSecundario
+            corTextoTabela: tema.corTextoSecundario,
+            corTextoBotao: tema.corTextoBotao
         },
 
         botoes: {

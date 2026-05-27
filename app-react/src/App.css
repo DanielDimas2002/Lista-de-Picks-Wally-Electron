@@ -239,6 +239,9 @@
 
   cursor: pointer;
 
+  font-weight: bold;
+  color: var(--corTextoBotao);
+
   transition:
     background-color 0.2s ease,
     transform 0.2s ease;

@@ -39,7 +39,7 @@ const Aside = React.memo(function Aside({ handleCadastrarPick, handleCadastrarVi
       setTexto(textoOriginal);
       setCor("botaoPadrao");
       timerRef.current = null; // limpa o ref
-    }, 1500);
+    }, 1500); 
   }
 
   return (
@@ -82,7 +82,7 @@ const Aside = React.memo(function Aside({ handleCadastrarPick, handleCadastrarVi
                 ? temaAtual.corSucesso
                 : temaAtual.corPerigo,
 
-          color: temaAtual.corTextoSecundario
+          color: temaAtual.corTextoBotao
         }}
         onClick={async () => {
 
@@ -154,7 +154,7 @@ const Aside = React.memo(function Aside({ handleCadastrarPick, handleCadastrarVi
                 ? temaAtual.corSucesso
                 : temaAtual.corPerigo,
 
-          color: temaAtual.corTextoSecundario
+          color: temaAtual.corTextoBotao
         }}
         onClick={async () => {
           if (campoVazio(nomeVida, vidasVida) || parseInt(vidasVida) < 1) {
@@ -207,7 +207,7 @@ const Aside = React.memo(function Aside({ handleCadastrarPick, handleCadastrarVi
                 ? temaAtual.corSucesso
                 : temaAtual.corPerigo,
 
-          color: temaAtual.corTextoSecundario
+          color: temaAtual.corTextoBotao
         }}
         onClick={async () => {
           if (campoVazio(nomeBanco, valorBanco) || parseInt(valorBanco) < 1) {
