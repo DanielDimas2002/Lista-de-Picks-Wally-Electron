@@ -319,3 +319,167 @@
   }
 
 }
+
+/* ======================================================== */
+/* TELA DE CONFIGURAÇÕES */
+/* ======================================================== */
+
+.pagina-configuracoes {
+  padding: 30px;
+}
+
+.cabecalho-configuracoes h2 {
+  margin-bottom: 10px;
+
+  color: var(--corTextoPrincipal);
+
+  font-size: clamp(28px, 2.2vw, 42px);
+}
+
+.cabecalho-configuracoes p {
+  color: var(--corTextoSecundario);
+
+  margin-bottom: 30px;
+}
+
+/* ======================================================== */
+/* GRID */
+/* ======================================================== */
+
+.configuracoes-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(320px, 1fr));
+
+  gap: 24px;
+
+  max-width: calc(100% - 340px);
+}
+
+/* ======================================================== */
+/* CARD DE CONFIGURAÇÃO */
+/* ======================================================== */
+
+.grupo-configuracao {
+
+  background-color: var(--fundoSecundario);
+
+  border: 1px solid var(--bordaTabela);
+
+  border-radius: var(--raioBordaPadrao);
+
+  padding: 24px;
+
+  box-shadow: var(--sombraPadrao);
+}
+
+.grupo-configuracao h3 {
+
+  margin-top: 0;
+  margin-bottom: 24px;
+
+  color: var(--corTextoPrincipal);
+
+  font-size: clamp(20px, 1.5vw, 28px);
+}
+
+/* ======================================================== */
+/* CAMPOS */
+/* ======================================================== */
+
+.campo-configuracao {
+  margin-bottom: 20px;
+}
+
+.campo-configuracao label {
+
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: var(--corTextoSecundario);
+
+  font-weight: bold;
+}
+
+/* ======================================================== */
+/* INPUT DE COR */
+/* ======================================================== */
+
+.input-cor-container {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.input-cor-container input[type="color"] {
+
+  width: 60px;
+  height: 40px;
+
+  border: none;
+
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.input-cor-container span {
+
+  font-family: monospace;
+
+  color: var(--corTextoPrincipal);
+
+  font-size: 14px;
+}
+
+/* ======================================================== */
+/* BOTÃO RESTAURAR */
+/* ======================================================== */
+
+.container-restaurar {
+  margin-top: 40px;
+}
+
+.botao-restaurar {
+
+  background-color: var(--corPrimaria);
+
+  color: var(--corTextoBotao);
+
+  border: none;
+
+  padding: 12px 20px;
+
+  border-radius: var(--raioBordaPadrao);
+
+  cursor: pointer;
+
+  font-weight: bold;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.botao-restaurar:hover {
+
+  background-color: var(--corPrimariaHover);
+
+  transform: scale(1.02);
+}
+
+@media (max-width: 1200px) {
+
+  .configuracoes-grid {
+
+    grid-template-columns: 1fr;
+
+    max-width: 100%;
+  }
+}

@@ -53,54 +53,95 @@ function TelaConfiguracoes() {
   ];
 
   return (
-    <div style={{ padding: "30px" }}>
 
-      <h2>⚙️ Configurações de Tema</h2>
-      <p>Personalize as cores da aplicação.</p>
+    <div className="pagina-configuracoes">
 
       {/* ---------------------------------------------------- */}
-      {/* RENDERIZAÇÃO DINÂMICA */}
+      {/* CABEÇALHO */}
       {/* ---------------------------------------------------- */}
-      {configuracoesTema.map(function (grupo) {
+      <div className="cabecalho-configuracoes">
 
-        return (
-          <div key={grupo.titulo} style={{ marginTop: "30px" }}>
+        <h2>⚙️ Configurações de Tema</h2>
 
-            <h3>{grupo.titulo}</h3>
+        <p>
+          Personalize as cores da aplicação.
+        </p>
 
-            {grupo.campos.map(function (campo) {
+      </div>
 
-              return (
-                <div key={campo.chave} style={{ marginTop: "15px" }}>
+      {/* ---------------------------------------------------- */}
+      {/* GRID DE CONFIGURAÇÕES */}
+      {/* ---------------------------------------------------- */}
+      <div className="configuracoes-grid">
 
-                  <label>{campo.label}</label>
+        {configuracoesTema.map(function (grupo) {
 
-                  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          return (
 
-                    <input
-                      type="color"
-                      value={temaAtual[campo.chave]}
-                      onChange={function (e) {
-                        alterarCor(campo.chave, e.target.value);
-                      }}
-                    />
+            <div
+              key={grupo.titulo}
+              className="grupo-configuracao"
+            >
+
+              <h3>{grupo.titulo}</h3>
+
+              {grupo.campos.map(function (campo) {
+
+                return (
+
+                  <div
+                    key={campo.chave}
+                    className="campo-configuracao"
+                  >
+
+                    <label>
+                      {campo.label}
+                    </label>
+
+                    <div className="input-cor-container">
+
+                      <input
+                        type="color"
+                        value={temaAtual[campo.chave]}
+                        onChange={function (e) {
+
+                          alterarCor(
+                            campo.chave,
+                            e.target.value
+                          );
+
+                        }}
+                      />
+
+                      <span>
+                        {temaAtual[campo.chave]}
+                      </span>
+
+                    </div>
+
                   </div>
 
-                </div>
-              );
-            })}
+                );
 
-          </div>
-        );
+              })}
 
-      })}
+            </div>
+
+          );
+
+        })}
+
+      </div>
 
       {/* ---------------------------------------------------- */}
       {/* BOTÃO RESTAURAR */}
       {/* ---------------------------------------------------- */}
-      <div style={{ marginTop: "30px" }}>
+      <div className="container-restaurar">
 
-        <button onClick={restaurarTemaPadrao}>
+        <button
+          className="botao-restaurar"
+          onClick={restaurarTemaPadrao}
+        >
           Restaurar Tema Padrão
         </button>
 
