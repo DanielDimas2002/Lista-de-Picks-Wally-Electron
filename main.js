@@ -1,11 +1,34 @@
-// Importa os módulos necessários do Electron e Node
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 
-// ✅ Versão assíncrona do fs
 const fs = require("fs").promises;
+const fsSync = require("fs");
 
 let mainWindow;
+
+// ======================================================
+// 📁 DIRETÓRIO DE DADOS DO USUÁRIO
+// ======================================================
+
+function obterCaminhoDados(tipo) {
+
+  // Pasta oficial do Electron para salvar dados
+  const pastaDados = path.join(
+    app.getPath("userData"),
+    "data"
+  );
+
+  // Cria a pasta caso ela não exista
+  if (!fsSync.existsSync(pastaDados)) {
+    fsSync.mkdirSync(pastaDados, { recursive: true });
+  }
+
+  // Retorna o caminho final do JSON
+  return path.join(
+    pastaDados,
+    `${tipo}.json`
+  );
+}
 
 // ======================================================
 // 🪟 CRIAÇÃO DA JANELA PRINCIPAL
@@ -79,12 +102,7 @@ ipcMain.handle(
 
   async function (event, tipo) {
 
-    const caminho = path.join(
-      __dirname,
-      "app-react",
-      "data",
-      `${tipo}.json`
-    );
+    const caminho = obterCaminhoDados(tipo);
 
     try {
 
@@ -121,12 +139,7 @@ ipcMain.handle(
 
   async function (event, tipo, dados) {
 
-    const caminho = path.join(
-      __dirname,
-      "app-react",
-      "data",
-      `${tipo}.json`
-    );
+    const caminho = obterCaminhoDados(tipo);
 
     try {
 
@@ -162,12 +175,7 @@ ipcMain.handle(
 
   async function (event, tipo, novaLista) {
 
-    const caminho = path.join(
-      __dirname,
-      "app-react",
-      "data",
-      `${tipo}.json`
-    );
+    const caminho = obterCaminhoDados(tipo);
 
     try {
 

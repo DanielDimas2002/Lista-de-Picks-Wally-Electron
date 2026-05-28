@@ -81,13 +81,9 @@ function App() {
         novaLista
       );
 
-      if (salvou) {
-
-        mostrarToast(
-          "✅ Pick cadastrado com sucesso"
-        );
-
-      }
+      mostrarToast(
+        "✅ Pick cadastrado com sucesso"
+      );
 
       return salvou;
 
