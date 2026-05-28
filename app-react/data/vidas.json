@@ -68,15 +68,5 @@
     "nome": "tt",
     "vidas": 7,
     "ativo": true
-  },
-  {
-    "nome": "testd",
-    "vidas": 5,
-    "ativo": true
-  },
-  {
-    "nome": "6",
-    "vidas": 6,
-    "ativo": true
   }
 ]

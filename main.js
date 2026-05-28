@@ -95,10 +95,15 @@ ipcMain.handle(
 
       const dados = JSON.parse(conteudo);
 
+      console.log(`📥 Dados lidos de ${tipo}.json`);
 
       return dados;
 
     } catch (erro) {
+
+      console.log(
+        `⚠️ Arquivo ${tipo}.json não encontrado ou vazio`
+      );
 
       return [];
 
@@ -130,9 +135,16 @@ ipcMain.handle(
         JSON.stringify(dados, null, 2)
       );
 
+      console.log(`✅ Dados salvos em ${tipo}.json`);
+
       return true;
 
     } catch (erro) {
+
+      console.log(
+        `❌ Erro ao salvar ${tipo}.json:`,
+        erro
+      );
 
       return false;
 
@@ -164,9 +176,18 @@ ipcMain.handle(
         JSON.stringify(novaLista, null, 2)
       );
 
+      console.log(
+        `🔄 ${tipo}.json atualizado com sucesso`
+      );
+
       return true;
 
     } catch (erro) {
+
+      console.log(
+        `❌ Erro ao atualizar ${tipo}.json:`,
+        erro
+      );
 
       return false;
 
