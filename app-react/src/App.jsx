@@ -46,7 +46,7 @@ function App() {
       // Limpa a referência do timer
       timerToast.current = null;
 
-    }, 2000);
+    }, 1500);
 
   }
 

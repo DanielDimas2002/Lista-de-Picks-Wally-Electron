@@ -284,6 +284,8 @@
   animation: aparecer 0.3s ease;
 
   box-shadow: var(--sombraPadrao);
+
+  pointer-events: none;
 }
 
 /* ========================= */
