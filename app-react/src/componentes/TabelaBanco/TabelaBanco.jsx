@@ -2,7 +2,12 @@ import React from "react";
 import LinhaBanco from "./LinhaBanco";
 
 
-function TabelaBanco({ banco, aoEditarValor, aoExcluir }) {
+function TabelaBanco({
+  banco,
+  aoEditarValor,
+  aoEditarNome,
+  aoExcluir
+}) {
   return (
     <section className="tabela-container">
       <h1>💰 Tabela Banco</h1>
@@ -21,6 +26,7 @@ function TabelaBanco({ banco, aoEditarValor, aoExcluir }) {
               indice={indice}
               nome={entrada.nome}
               valor={entrada.valor}
+              aoEditarNome={aoEditarNome}
               aoEditarValor={aoEditarValor}
               aoExcluir={aoExcluir}
             />

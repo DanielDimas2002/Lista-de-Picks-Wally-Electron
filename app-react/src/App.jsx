@@ -332,6 +332,21 @@ function App() {
     window.api.atualizarDados("banco", novaLista);
   }
 
+  // ✏️ Edita o nome do crédito
+  function editarNomeBanco(indice, novoNome) {
+
+    const novaLista = [...listaBanco];
+
+    novaLista[indice].nome = novoNome;
+
+    setListaBanco(novaLista);
+
+    window.api.atualizarDados(
+      "banco",
+      novaLista
+    );
+
+  }
 
   // 💰 Excluir o Linha e persiste no JSON
 
@@ -440,9 +455,11 @@ function App() {
             <Route path="/banco" element={
               <TabelaBanco
                 banco={listaBanco}
+                aoEditarNome={editarNomeBanco}
                 aoEditarValor={editarValorBanco}
                 aoExcluir={excluirCredito}
-              />} />
+              />
+            } />
 
             <Route path="/configuracoes" element={<TelaConfiguracoes />} />
 
