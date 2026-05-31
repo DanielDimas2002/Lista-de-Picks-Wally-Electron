@@ -173,6 +173,22 @@ function App() {
 
   }
 
+  // ❤️ Adiciona 1 vida ao campeão
+  function adicionarVida(indice) {
+
+    const novaLista = [...listaPicks];
+
+    novaLista[indice].vidas++;
+
+    setListaPicks(novaLista);
+
+    window.api.atualizarDados(
+      "picks",
+      novaLista
+    );
+
+  }
+
   // ⬆️ Move o campeão uma posição acima
   function subirLinha(indice) {
 
@@ -189,6 +205,54 @@ function App() {
     setListaPicks(novaLista);
 
     window.api.atualizarDados("picks", novaLista);
+
+  }
+
+  // ⏫ Move o campeão para o topo
+  function moverParaTopo(indice) {
+
+    if (indice === 0) {
+      return;
+    }
+
+    const novaLista = [...listaPicks];
+
+    const item = novaLista[indice];
+
+    novaLista.splice(indice, 1);
+
+    novaLista.unshift(item);
+
+    setListaPicks(novaLista);
+
+    window.api.atualizarDados(
+      "picks",
+      novaLista
+    );
+
+  }
+
+  // ⬇️ Move o campeão uma posição abaixo
+  function descerLinha(indice) {
+
+    if (indice === listaPicks.length - 1) {
+      return;
+    }
+
+    const novaLista = [...listaPicks];
+
+    const item = novaLista[indice];
+
+    novaLista.splice(indice, 1);
+
+    novaLista.splice(indice + 1, 0, item);
+
+    setListaPicks(novaLista);
+
+    window.api.atualizarDados(
+      "picks",
+      novaLista
+    );
 
   }
 
@@ -357,7 +421,10 @@ function App() {
               <TabelaPick
                 listaPicks={listaPicks}
                 aoReduzirVida={reduzirVida}
+                aoAdicionarVida={adicionarVida}
                 aoSubir={subirLinha}
+                aoDescer={descerLinha}
+                aoMoverParaTopo={moverParaTopo}
                 aoExcluir={excluirPick}
               />} />
 

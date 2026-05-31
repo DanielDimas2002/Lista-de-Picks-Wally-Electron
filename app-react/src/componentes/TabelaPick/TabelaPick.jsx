@@ -2,7 +2,15 @@ import React from "react";
 import LinhaPick from "./LinhaPick";
 
 
-function TabelaPick({ listaPicks, aoReduzirVida, aoSubir, aoExcluir }) {
+function TabelaPick({
+    listaPicks,
+    aoReduzirVida,
+    aoAdicionarVida,
+    aoSubir,
+    aoDescer,
+    aoMoverParaTopo,
+    aoExcluir
+}) {
     return (
         <section className="tabela-container">
             <h1>📋 Tabela Pick</h1>
@@ -22,7 +30,10 @@ function TabelaPick({ listaPicks, aoReduzirVida, aoSubir, aoExcluir }) {
                             nome={pick.nome}
                             vidas={pick.vidas}
                             aoReduzirVida={aoReduzirVida}
+                            aoAdicionarVida={aoAdicionarVida}
                             aoSubir={aoSubir}
+                            aoDescer={aoDescer}
+                            aoMoverParaTopo={aoMoverParaTopo}
                             aoExcluir={aoExcluir}
                         />
                     ))}
