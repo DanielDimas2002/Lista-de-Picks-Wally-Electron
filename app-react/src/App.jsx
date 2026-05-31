@@ -256,6 +256,22 @@ function App() {
 
   }
 
+  // ✏️ Edita o nome do campeão
+  function editarNomePick(indice, novoNome) {
+
+    const novaLista = [...listaPicks];
+
+    novaLista[indice].nome = novoNome;
+
+    setListaPicks(novaLista);
+
+    window.api.atualizarDados(
+      "picks",
+      novaLista
+    );
+
+  }
+
   // 🗑️ Remove o campeão da lista
   function excluirPick(indice) {
 
@@ -303,6 +319,22 @@ function App() {
 
     setListaVida(novaLista);
     window.api.atualizarDados("vidas", novaLista);
+  }
+
+  // ✏️ Edita o nome do jogador
+  function editarNomeJogador(indice, novoNome) {
+
+    const novaLista = [...listaVidas];
+
+    novaLista[indice].nome = novoNome;
+
+    setListaVida(novaLista);
+
+    window.api.atualizarDados(
+      "vidas",
+      novaLista
+    );
+
   }
 
   function excluirJogador(indice) {
@@ -435,6 +467,7 @@ function App() {
             <Route path="/picks" element={
               <TabelaPick
                 listaPicks={listaPicks}
+                aoEditarNome={editarNomePick}
                 aoReduzirVida={reduzirVida}
                 aoAdicionarVida={adicionarVida}
                 aoSubir={subirLinha}
@@ -446,6 +479,7 @@ function App() {
             <Route path="/vidas" element={
               <TabelaVida
                 vidas={listaVidas}
+                aoEditarNome={editarNomeJogador}
                 aoReduzirVida={reduzirVidaJogador}
                 aoAdicionarVida={adicionarVidaJogador}
                 aoExcluir={excluirJogador}

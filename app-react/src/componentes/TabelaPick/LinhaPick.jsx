@@ -1,10 +1,10 @@
-import React from "react";
-
+import React, { useState } from "react";
 
 function LinhaPick({
     indice,
     nome,
     vidas,
+    aoEditarNome,
     aoReduzirVida,
     aoAdicionarVida,
     aoSubir,
@@ -12,9 +12,63 @@ function LinhaPick({
     aoMoverParaTopo,
     aoExcluir
 }) {
+
+    const [editandoNome, setEditandoNome] = useState(false);
+
+    const [novoNome, setNovoNome] = useState(nome);
+
+    function confirmarNome() {
+
+        const nomeLimpo = novoNome.trim();
+
+        if (nomeLimpo !== "") {
+
+            aoEditarNome(
+                indice,
+                nomeLimpo
+            );
+
+        }
+
+        setEditandoNome(false);
+
+    }
+
     return (
         <tr>
-            <td>{nome}</td>
+            <td
+                onClick={() => setEditandoNome(true)}
+                className="celula-editavel"
+            >
+
+                {editandoNome ? (
+
+                    <input
+                        type="text"
+                        value={novoNome}
+                        autoFocus
+                        onChange={(e) =>
+                            setNovoNome(e.target.value)
+                        }
+                        onBlur={confirmarNome}
+                        onKeyDown={(e) => {
+
+                            if (e.key === "Enter") {
+                                confirmarNome();
+                            }
+
+                        }}
+                    />
+
+                ) : (
+
+                    <span title="Clique para editar">
+                        {nome}
+                    </span>
+
+                )}
+
+            </td>
             <td>{vidas}</td>
             <td>
 

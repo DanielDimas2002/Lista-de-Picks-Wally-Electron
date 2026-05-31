@@ -4,6 +4,7 @@ import LinhaPick from "./LinhaPick";
 
 function TabelaPick({
     listaPicks,
+    aoEditarNome,
     aoReduzirVida,
     aoAdicionarVida,
     aoSubir,
@@ -29,6 +30,7 @@ function TabelaPick({
                             indice={indice}
                             nome={pick.nome}
                             vidas={pick.vidas}
+                            aoEditarNome={aoEditarNome}
                             aoReduzirVida={aoReduzirVida}
                             aoAdicionarVida={aoAdicionarVida}
                             aoSubir={aoSubir}
